@@ -1,0 +1,39 @@
+.content {
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+}
+
+.header img {
+    overflow: hidden;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.headerContent {
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    padding: 12px 24px;
+    transform: translate(0%, -50%);
+}
+
+.headerContent h1 {
+    font-size: 5rem;
+}
+
+.reserveButton {
+    color: #000;
+    background-color: #FFFF;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
+    padding: 12px 24px;
+}
+  
+.reserveButton:hover {
+    background-color: #ccc;
+}

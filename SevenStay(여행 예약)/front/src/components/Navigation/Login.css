@@ -1,0 +1,27 @@
+.navi__rb { /*margin 제거*/
+    border-radius: 2rem;
+    border:0;
+    cursor:pointer;
+    user-select: none;
+    padding: 10px;
+    display: flex;
+    height: 43px;
+    width: 80px;
+    -webkit-box-align: center;
+    appearance: none;
+    display: inline-flex;
+}
+
+.navi__rb:hover {
+    background-color: #FF385C;
+}
+
+.deha {
+    padding-right: 5px;
+    align-items: center;
+}
+
+.account {
+    padding-left: 5px;
+    align-items: center;
+}

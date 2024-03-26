@@ -1,0 +1,66 @@
+.box {
+    border-top: 2px solid #ccc;
+    padding-top: 50px;
+    margin: 50px 100px;
+}
+
+.hairContainer {
+    display: flex;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+/* .hairContent {
+    display: flex;
+    align-items: stretch;
+    margin: 0 auto;
+    width: 80%;
+    background: white;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding-top: 50px;
+    border-top: 2px solid #ccc;
+}
+
+.hairContent .hairBox {
+    position: relative;
+}
+
+.hairBox .styleImage {
+    position: relative;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.styleImage img {
+    width: auto;
+    height: 400px;
+
+}
+
+.hairBox .styleText {
+    text-align: center;
+}
+
+p.hairName {
+    color: #555;
+    font-size: 16px;
+    min-height: 32px;
+    vertical-align: top;
+    line-height: 18px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+p.price {
+    color: #555;
+    font-size: 16px;
+    min-height: 32px;
+    vertical-align: top;
+    line-height: 18px;
+    word-wrap: break-word;
+    word-break: break-all;
+} */

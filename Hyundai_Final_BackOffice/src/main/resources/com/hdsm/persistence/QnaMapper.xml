@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.hdsm.persistence.QnaMapper">
+	
+	<select id="qnaList" resultType="com.hdsm.domain.qna.QnaDTO">
+		SELECT * FROM qna
+		ORDER BY qstate ASC, qdate ASC
+	</select>
+	<select id="qnaRead" resultType="com.hdsm.domain.qna.QnaDTO">
+		SELECT * FROM qna
+		WHERE qno=#{qno}		
+	</select>
+  	
+  	<update id="reply" parameterType="com.hdsm.domain.qna.QnaDTO">
+  	<![CDATA[   	
+  		UPDATE qna
+  		SET
+  		qmanager=#{qmanager},
+  		QREPLYCONTENT=#{qreplycontent},
+  		QREPLYDATE=sysdate,
+  		qstate='답변완료'
+  		where qno=#{qno}
+  		]]>
+  	</update>
+  
+  
+  	<select id="qnaStatus" resultType="map">
+		<![CDATA[
+			select qstate, count(qstate) as count
+			from qna
+			group by qstate
+		]]>
+	</select>
+	
+</mapper>

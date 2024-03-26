@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- parameterType="com.hdsm.domain.MemberVO" -->
+<mapper namespace="com.hdsm.persistence.MemberMapper2">
+
+		<!-- 회원가입 -->
+	<insert id="insertMember">
+		INSERT INTO member (mid, mpassword, mname, memail, mtel, mzipcode, 
+		maddress1, maddress2, buysum ,mgrade, mdate, mpoint, menabled)
+		VALUES (#{mid}, #{mpassword}, #{mname}, #{memail}, #{mtel}, #{mzipcode}, 
+		#{maddress1}, #{maddress2}, 0, 'silver', sysdate, 0, 0)
+	</insert>
+	
+	
+	<select id="getMember" resultType="com.hdsm.domain.MemberVO">
+		select * from member where mid=#{memberId}
+	</select>
+	
+
+
+	<!-- 유저의 장바구니목록들 가져오기 -->
+
+	<select id="getMembersShoppingBag" resultType="com.hdsm.domain.MemberSbagDTO">
+		SELECT
+			*
+		FROM mycart
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="mid != null and mid !='' ">
+				mid = #{mid}
+			</if>
+		</trim>
+
+	</select>
+	
+	<!-- 그목록들에 있는 제품의 정보 -->
+	<select id="getShoppingBagsProduct" resultType="com.hdsm.domain.ProductVO">
+		SELECT
+			*
+		FROM product
+		where 
+			pid in #{pid}
+
+	</select>
+	
+	<!-- 그제품들의 컬러  정보 -->
+	<select id="getProductsColor" resultType="com.hdsm.domain.ThumbnailColorVO">
+		SELECT
+			product_pid, ccolorcode, cname, ccolorimage, c_thumbnail1, c_thumbnail2
+		FROM color
+		where 
+			product_pid = #{pid}
+
+	</select>
+	
+	<!-- 장바구니 상품 정보 변경 (수량, 사이즈, 컬러 등) -->
+	<update id="updateShoppingBag">
+		UPDATE mycart
+		SET
+			psize = #{psize},
+			pcolor = #{pcolor},
+			pamount = #{pamount}
+		WHERE
+			mid = #{mid} and pid = #{pid}
+	</update>
+	<!-- 장바구니에 상품 있는지 조회 -->
+	<select id="selectShoppingBag" resultType="int">
+		SELECT count(mid) FROM mycart
+		WHERE
+			mid = #{mid} and pid = #{pid} and psize = #{psize} and pcolor = #{pcolor}
+	</select>
+	
+	<!-- 장바구니 상품 정보 삭제 -->
+	<delete id="deleteShoppingBag">
+			DELETE FROM mycart
+			WHERE
+			<foreach collection="msList" item="dto" index="index" separator="OR">
+				mid = #{dto.mid} and pid = #{dto.pid} and psize = #{dto.psize} and pcolor = #{dto.pcolor}
+			</foreach>
+	</delete>
+</mapper> 

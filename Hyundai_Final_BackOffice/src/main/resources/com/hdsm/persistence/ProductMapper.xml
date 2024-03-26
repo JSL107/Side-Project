@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hdsm.persistence.ProductMapper">
+
+	<!-- <select id="getList" resultType="com.hdsm.domain.ProductVO"> <![CDATA[ 
+		select * from product where rownum < 3 ]]> </select> -->
+
+	<select id="getListWithPaging" resultType="com.hdsm.domain.ProductVO">
+
+        select 
+        	pid, bname, pname, pprice, p_size
+		from 
+			(
+		    select 
+		    	rownum rn, pid, bname, pname, pprice, p_size
+		    from 
+					<!-- (select * from product order by pprice) -->
+ 		    	<choose>
+		    		<when test="fd.orderBy !=''">
+		    			(select * from product order by ${fd.orderBy})
+		    		</when>
+		    		<otherwise>
+		    			product
+		    		</otherwise>
+		    	</choose>
+		    where 
+		    	<![CDATA[1 < 2]]> 
+
+					<if test="vo.clarge != null and vo.clarge !='' ">
+						AND Clarge LIKE '%' || #{vo.clarge} || '%'
+					</if>
+					<if test="vo.cmedium != null and vo.cmedium !='' ">
+						AND Cmedium LIKE '%' || #{vo.cmedium } || '%'
+					</if>
+					<if test="vo.csmall != null and vo.csmall !='' ">
+						AND Csmall LIKE '%' || #{vo.csmall } || '%'
+					</if>
+					<if test="fd.bnames != null">
+						AND bname in
+							<foreach 
+							collection="fd.bnames"
+							item="brandName"
+							open="(" separator="," close=")">
+							#{brandName}
+							</foreach>
+					</if>
+					<if test="fd.color != null">
+							AND p_color LIKE '%' || #{fd.color} || '%'
+					</if>
+					<if test="fd.sizes != null">
+						<foreach collection="fd.sizes" item="productSize">
+						AND p_size LIKE '%' || #{productSize} || '%'
+						</foreach>
+					</if>
+					<if test="fd.price1 != null and fd.price2 != null">
+							AND 
+							#{fd.price1} <![CDATA[< pprice AND pprice <=]]>  #{fd.price2}
+					</if>
+					
+		    	AND
+		    	<![CDATA[rownum <= #{cri.pageNum} * #{cri.amount}]]> 
+			)
+		where 
+			<![CDATA[rn >  (#{cri.pageNum} - 1) * #{cri.amount}]]>
+
+	</select>
+
+	<select id="getColorList" resultType="com.hdsm.domain.ThumbnailColorVO">
+        select 
+        	product_pid, ccolorcode, cname, ccolorimage, c_thumbnail1, c_thumbnail2
+		from 
+			color
+		where 
+			product_pid in 
+				<foreach 
+					collection="list" item="productID" index="index" 
+					open="(" separator="," close=")">
+					#{productID}
+				</foreach>
+	</select>
+	
+	<select id="getProduct" resultType="com.hdsm.domain.ProductVO">
+	select *
+	from product
+	where pid = #{pid} 
+	
+	</select>
+	
+	<select id="getProductColor" resultType="com.hdsm.domain.ProductColorVO">
+	select *
+	from color
+	where product_pid = #{pid} 
+	</select>
+	
+	<!-- 물건 갯수  -->
+	<select id="productCount" resultType="_int">
+		SELECT
+		count(*)
+		FROM Product
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="vo.clarge != null and vo.clarge !='' ">
+				AND Clarge LIKE '%' || #{vo.clarge} || '%'
+			</if>
+			<if test="vo.cmedium != null and vo.cmedium !='' ">
+				AND Cmedium LIKE '%' || #{vo.cmedium } || '%'
+			</if>
+			<if test="vo.csmall != null and vo.csmall !='' ">
+				AND Csmall LIKE '%' || #{vo.csmall } || '%'
+			</if>
+		</trim>
+		
+	</select>
+	<select id="productFiltedCount" resultType="_int">
+	    select 
+	    	count(*)
+	    from 
+	    	product
+
+	    where 
+	    	<![CDATA[1 < 2]]> 
+			<if test="vo.clarge != null and vo.clarge !='' ">
+				AND Clarge LIKE '%' || #{vo.clarge} || '%'
+			</if>
+			<if test="vo.cmedium != null and vo.cmedium !='' ">
+				AND Cmedium LIKE '%' || #{vo.cmedium } || '%'
+			</if>
+			<if test="vo.csmall != null and vo.csmall !='' ">
+				AND Csmall LIKE '%' || #{vo.csmall } || '%'
+			</if>
+			<if test="fd.bnames != null">
+				AND bname in
+					<foreach 
+					collection="fd.bnames"
+					item="brandName"
+					open="(" separator="," close=")">
+					#{brandName}
+					</foreach>
+			</if>
+			<if test="fd.color != null">
+					AND p_color LIKE '%' || #{fd.color} || '%'
+			</if>
+			<if test="fd.sizes != null">
+				<foreach collection="fd.sizes" item="productSize">
+				AND p_size LIKE '%' || #{productSize} || '%'
+				</foreach>
+			</if>
+			<if test="fd.price1 != null and fd.price2 != null">
+					AND 
+					#{fd.price1} <![CDATA[< pprice AND pprice <=]]>  #{fd.price2}
+			</if>
+	
+	</select>
+	<!-- 필터링된 물건 갯수 -->
+</mapper> 

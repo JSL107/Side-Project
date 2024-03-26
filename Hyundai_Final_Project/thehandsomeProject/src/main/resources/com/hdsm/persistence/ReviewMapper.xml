@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hdsm.persistence.ReviewMapper">
+
+	<!-- 상품평 리스트 가져오기 -->
+	<select id="getReviewList" parameterType="string" resultType="com.hdsm.domain.ReviewDTO">
+		SELECT
+			*
+		FROM review
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="pid != null and pid !='' ">
+				pid = #{pid}
+			</if>
+		</trim>
+		ORDER BY rno DESC
+	</select>
+	
+	<!-- 상품평 리스트 페이징 된걸로 가져오기 -->
+	<select id="getReviewListWithPaging" parameterType="string" resultType="com.hdsm.domain.ReviewDTO">
+		select RNO, RDATE, RCONTENT, MID, MNAME, MGRADE, PID, PNAME, PCOLOR, PSIZE, BNAME, RTITLE, RCOMFORTABLE, RPRICE 
+		from
+		    (select rownum rn, RNO, RDATE, RCONTENT, MID, MNAME, MGRADE, PID, PNAME, PCOLOR, PSIZE, BNAME, RTITLE, RCOMFORTABLE, RPRICE
+		    from 
+		        (SELECT *
+		        FROM review
+		        ORDER BY rno DESC)
+		    <trim prefix="WHERE" prefixOverrides="AND |OR">
+				<if test="pid != null and pid !='' ">
+					pid = #{pid} 
+					AND 
+					<![CDATA[rownum <= #{cri.pageNum} * #{cri.amount}]]> 
+				</if>
+			</trim>
+		    )
+		where
+		<![CDATA[rn >  (#{cri.pageNum} - 1) * #{cri.amount}]]>
+	</select>
+	
+	<!-- 상품평 작성 -->
+	<insert id="reviewInsert">
+		insert into review
+		(rno,rdate,rcontent,mid,mname,mgrade,
+		pid,pname,pcolor,psize,bname,rtitle,rcomfortable,rprice) 
+		values (review_seq.nextval,sysdate,TO_CLOB(#{rcontent}),#{mid},#{mname},#{mgrade},
+		#{pid},#{pname},#{pcolor},#{psize},#{bname},TO_CLOB(''),0,#{rprice})
+	</insert>
+	
+	<!-- 상품평  작성 여부 확인 -->
+	<select id="getReviewCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM review
+		WHERE pid=#{pid} AND mid=#{mid} AND psize=#{psize} AND pcolor=#{pcolor}
+	</select>
+
+	<select id="UserReviewCount" resultType="int">
+		SELECT COUNT(*)
+		FROM review
+		WHERE mid=#{mid}
+	</select>
+	<!-- 회원별 상품평 리스트 -->
+	<select id="getReviewMemberList"  parameterType="string" resultType="com.hdsm.domain.ReviewDTO">
+		SELECT *
+		FROM review
+		WHERE pid=#{pid} AND mid=#{mid}
+	</select>
+
+	<select id="chkReviews" resultType="int">
+		SELECT count(*)
+		FROM reviews
+		WHERE oid = #{oid}
+	</select>
+	
+	<!-- 상품평 작성 -->
+	<insert id="reviewsInsert">
+		insert into reviews
+		(oid, rdate, rcontent, mid, pid, ccolorcode)
+		values (#{oid}, sysdate,TO_CLOB(#{rcontent}),#{mid},#{pid},#{ccolorcode})
+	</insert>
+	
+
+</mapper> 
+

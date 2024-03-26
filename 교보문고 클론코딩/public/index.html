@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Book</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font-awesome 설정 코드 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+</head>
+
+<body>
+    <article>
+        <header class="Header">
+            <div class="Header__top">
+                <div class="Header__top__menus">
+                    <li>바로콘 <i class="fa-solid fa-toggle-off"></i></li>
+                    <li>매장 안내 <i class="fa-solid fa-angle-down"></i></li>
+                    <li>회원혜택 <i class="fa-solid fa-angle-down"></i></li>
+                    <li>Prestige Lounge</li>
+                </div>
+                <div class="Header__top__login__menu">
+                    <button>로그인</button>
+                    <li>|</li>
+                    <li>회원가입</li>
+                    <li>출석체크</li>
+                    <li>고객센터</li>
+                    <li>주문배송</li>
+                    <i class="fa fa-cart-shopping"></i>
+                </div>
+            </div>
+            <div class="Header__bottom">
+                <div class="Header__bottom__logo">
+                    <a href="/">
+                        <img src="http://image.kyobobook.co.kr/ink/images/gnb/logo_kyobo.png" alt="kyobo logo">
+                    </a>
+                </div>
+                <div class="Header__bottom__search">
+                    <div class="Header__bottom__search__menu">
+                        <li>아이가 있는 집</li>
+                        <li>|</li>
+                        <li>10만독자선택</li>
+                        <li>|</li>
+                        <li>박문각공인중개사</li>
+                        <li>|</li>
+                        <li>똑똑한 하루</li>
+                    </div>
+                    <div class="Header__bottom__search__btn">
+                        <form action="/search">
+                            <div>
+                                <label for="search"></label>
+                                <input type="text" name="search" id="search" class="Header__bottom__search__main"
+                                    placeholder="검색어를 입력하세요."></input>
+                            </div>
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="Header__bottom__event">
+                    <img src="https://simage.kyobobook.co.kr/ink/images/prom/2018/banner/181226/bnD_w03.jpg"
+                        alt="event image">
+                </div>
+            </div>
+        </header>
+        <section class="Bestseller">
+            <div class="Bestseller__header">
+                <h2 class="Bestseller__header__main">베스트 셀러</h2>
+                <ul class="Bestseller__header__sub">
+                    <li><a href="#">국내도서</a></li>
+                    <li><a href="#">외국도서</a></li>
+                    <li><a href="#">음반/기프트</a></li>
+                </ul>
+            </div>
+            <div class="Bestseller__body">
+                <ul class="Bestseller__body__content">
+
+                    <li>
+                        <div class="cover">
+                            <img src="http://image.kyobobook.co.kr/images/book/large/890/l9791170320890.jpg" alt="book image">
+                        </div>
+                        <div class="category">[소설]</div>
+                        <div class="title">신춘문예 당선소설집(2022)</div>
+                    </li>
+                    <li>
+                        <div class="cover">
+                            <img src="http://image.kyobobook.co.kr/images/book/large/072/l9791191891072.jpg" alt="book image">
+                        </div>
+                        <div class="category">[시/에세이]</div>
+                        <div class="title">나에게 고맙다</div>
+                    </li>
+                    <li>
+                        <div class="cover">
+                            <img src="http://image.kyobobook.co.kr/images/book/large/134/l9788974790134.jpg" alt="book image">
+                        </div>
+                        <div class="category">[인문]</div>
+                        <div class="title">인생의 모든 문제에는 답이 있다</div>
+                    </li>
+                    <li>
+                        <div class="cover">
+                            <img src="http://image.kyobobook.co.kr/images/book/large/894/l9791159095894.jpg" alt="book image">
+                        </div>
+                        <div class="category">[역사/문화]</div>
+                        <div class="title">벌거벗은 세계사:인물편</div>
+                    </li>
+                    <li>
+                        <div class="cover">
+                            <img src="http://image.kyobobook.co.kr/images/book/large/188/l9791161571188.jpg" alt="book image">
+                        </div>
+                        <div class="category">[소설]</div>
+                        <div class="title">불편한 편의점</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <section class="Bestseller">
+            <div class="Bestseller__header">
+                <h2 class="Bestseller__header__main">화제의 신간</h2>
+            </div>
+            <div class="Bestseller__body">
+                <ul class="Bestseller__body__content">
+                    <li>
+                        <div class="cover">
+                            <img src="http://image.kyobobook.co.kr/images/book/large/976/l9791130679976.jpg" alt="book image">
+                        </div>
+                        <div class="category">[성공스토리]</div>
+                        <div class="title">나의 상상은 현실이 된다</div>
+                    </li>
+                    <li>
+                        <div class="cover">
+                            <img src="http://image.kyobobook.co.kr/images/book/large/481/l9791192227481.jpg" alt="book image">
+                        </div>
+                        <div class="category">[자기혁신/자기관리]</div>
+                        <div class="title">12 1/2 부와 성공을 부르는 12가지 원칙</div>
+                    </li>
+                    <li>
+                        <div class="cover">
+                            <img src="http://image.kyobobook.co.kr/images/book/large/901/l9788947547901.jpg" alt="book image">
+                        </div>
+                        <div class="category">[주식/증권]</div>
+                        <div class="title">존리의 왜 주식인가</div>
+                    </li>
+                    <li>
+                        <div class="cover">
+                            <img src="http://image.kyobobook.co.kr/images/book/large/156/l9791189327156.jpg" alt="book image">
+                        </div>
+                        <div class="category">[종합추천]</div>
+                        <div class="title">물고기는 존재하지 않는다</div>
+                    </li>
+                    <li>
+                        <div class="cover">
+                            <img src="http://image.kyobobook.co.kr/images/book/large/736/l9788954684736.jpg" alt="book image">
+                        </div>
+                        <div class="category">[한국소설]</div>
+                        <div class="title">장미의 이름은 장미</div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <footer>
+            <div class="Footer">
+                <div class="Footer__area">
+                    <ul class="Footer__menu" data-ga-category="교보문고_공통_PC" data-ga-action="FNB">
+                        <li><a data-ga-label="회사소개" href="#">회사소개</a></li>
+                        <li><a data-ga-label="이용약관" href="#">이용약관</a></li>
+                        <li><a data-ga-label="개인정보처리방침" href="#"><strong>개인정보처리방침</strong></a></li>
+                        <li><a data-ga-label="청소년보호정책" href="#">청소년보호정책</a></li>
+                        <li><a data-ga-label="고객센터" href="#">고객센터</a></li>
+                        <li><a data-ga-label="협력사여러분" href="#">협력사여러분</a></li>
+                        <li><a data-ga-label="제휴 제안" href="#">제휴·제안</a></li>
+                        <li><a data-ga-label="광고문의" href="#">광고문의</a></li>
+                        <li><a data-ga-label="채용정보" href="#" target="_blank">채용정보</a></li>
+                    </ul>
+
+                    <div class="Logo__area">
+                        <img src="http://image.kyobobook.co.kr/ink/images/common/logo_footer.png" alt="KYOBO 교보문고">
+                    </div>
+
+
+                    <div class="Data__area">
+                        <address>
+                            ㈜ #### &nbsp; ### ### ### 1 &nbsp; 대표이사 : ###
+                            <br>
+                            사업자등록번호 : 000-00-00000
+                            <br>
+                            <strong class="big">대표전화 : 0000-0000 (발신자 부담전화)</strong>
+                            &nbsp;
+                            팩스 : 0000-000-0000 (지역번호공통)
+                            <br>
+                            ### ######### : 제 000호 ▶
+
+                            <a href="#" target="_blank" title="새 창 열림">사업자정보확인</a>
+                            <br>
+
+                            <div class="copy">
+                                COPYRIGHT(C)
+                                <strong>KYOBO BOOK CENTRE</strong>
+                                ALL RIGHTS RESERVED.
+                            </div>
+
+                        </address>
+                    </div>
+
+                    <div class="Promotion__area">
+                        <p>
+                            LG U+ 구매안전서비스 &nbsp;
+                            ▶<a href="#"
+                                onclick="window.open(this.href,'lguplus','scrollbars=yes,width=470,height=550');return false;"
+                                title="새 창 열림">서비스 가입 확인</a><br>
+                            고객님은 안전거래를 위해 현금 등으로 결제시 저희 쇼핑몰에서 가입한 LG유플러스의 구매안전서비스를 이용하실 수 있습니다.
+                        </p>
+
+
+                    </div>
+
+                    <div class="Mark__area">
+                        <a href="#" onclick="window.open(this.href,'mark_isms','width=600,height=855');return false;"
+                            title="새창열림">정보보호관리체계<br> ISMS 인증획득</a>
+                        <p>[인증범위] 온라인 교보문고 서비스 운영<br>[유효기간] 2020.11.04. ~ 2023.11.03.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+    </article>
+
+
+</body>
+
+</html>

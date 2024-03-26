@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "thehandsomeanalytics",
+  "private_key_id": "a0b341c7d38e17b5d2debe5c37306d343bb30deb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCXJrVOssGq+/49\nxsx3/CllLBdu8tunO7t4g9IJ5F4UTRtD0o+iporix4BzlQ80jSvUnYEmuJqAgu2e\n5ldoW3mf2Vc++f5qWaoxD+TrLx2rPW5UvbYCdjuoHh9nQYpbYL5SAt79piSC0Ks5\neHxLT1VJQHjjO6tJSdvv0ivxsq00IdOsJKpm2LYopmBdMVi0cPPWb1AkZOx+db6x\nP4mIDsEI1gWiKw0hbkVYPzZfqjFOfADvSVldVkQqEFoZIwTAsxfC5QTia1CngBDD\n0RunBoRNkvBJCC9/TwPU5RFSp5hFv8ICzAd/DiOARhW0BRmPP2v2FQnXLLd9lhCx\nZ/E+V9N/AgMBAAECggEADWmeahrbq6gL0gCLkVQbekJU3AAJ9MeMpa+Q2lbc8FE9\nS6HqJAVCSshoQhlmjYO/cXD+jmiQMTotCs4m0HhZjRE0uD5n0JkfTJY7+pCmQdVE\nLpndBk/mkE8H+1oqBFzL1qwxjHGLSN5qa0GhSe+CwmrJr2RSmUDIFvpf8uUnkHoT\nDJGCQISZuxxfzNPp8qpgDNjyg071fEzUNn7EmVup3KETAMTL9HHn0SVXzlhb77fB\nIhqetiRf3kCvlIBLcQuWogsUKl4QEjTPKxJZgeZ4S4vYYxxolPmmh7+nSi3172s6\ny2CGF1pT6MTuweyAnG+VZUD/w3EtCkhPxoy5+BWBxQKBgQDF2F/2S/t/8t3/r3f6\n8KXUFwP7juK83BuUOkdbpBCl1tO+rdGYXHZXC8hjQFrBYcvy2hOWP+dE8SzcCmkE\nOqbMAv3d/zBp+etM6aKsoFuq5USmQiOtXLSTEC6WMiI8WQRsctb24D1NLosLhuAo\nLtqbPofhQPAkuOKZbT+7DYPpGwKBgQDDlKmpNW/VF47kHUMX95dTHA9gz3Zlz8+z\nEULr669BlxURaSTi1N2u6D6zcQEzZK26fpr+tPg60fHfVYnpkvd3aXWz0imECes/\nmTqJKcCnF28ygABdXIByP14FP4AMsYoLS5+wYBzIXE1tlJpBYtmyVAEQLiGcljM7\ncuJwTkzpbQKBgA5453wizsDrSSX89e/bTqYXEOmD6D4cc8ACC1o+xCD9d/vIxz43\n9UgkyoHIIVtoBf07ypcBEa/PXJK0CD6Q88aUqXFly2rVJ0s3A/lQuaPkpYLr76Qs\n1eC0HFRMUojLkjFErUjd2l4c+3raYOdPlhopFtN5ZpepFppWjYTnVjDlAoGAOs4j\nKR5JDsAzlYD64GTwWevQ7+HRDpGqOIQTJA5MNqNvkTmU/qLUOLfZymhK3SIDXlSc\n08Kj9EOVvvngKpumzn+mBThGhU3aLtgqkn08UMEqDPwRoAClGjTVVyydmrNy9yx4\nyjZL0S53lWAd9VT8cbLyUuQb9RHwO4qybOQOGg0CgYALt1baBAng02sOVLNIg+ue\nxXPXj3QsEfU0g6joIz5rQGc8sFtGPl7lfLqbdbNI+DJ5gKzNviFM9y2mFPfe0fLD\nF4v7m5fL6gTXEbf1nolctANB4Uj3NY3EBvbcRYt7HsAjJtUxdJhN9rTctD+REAFs\n7Tj23oreih6Q8A5bJhAI+Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "dudah3581@thehandsomeanalytics.iam.gserviceaccount.com",
+  "client_id": "100671506057627300983",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dudah3581%40thehandsomeanalytics.iam.gserviceaccount.com"
+}

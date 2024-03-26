@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- /* * 작성자 : 김가희, 김나형, 김찬중 * * [상품 상세 조회, 상품 컬러 리스트 조회, 상품정보 조회, 카테고리별 상품 조회, 
+	상품 총 개수 조회, 차트] 쿼리 */ -->
+<mapper namespace="com.hyundai.handsome.mapper.ProductMapper">
+
+	<select id="productGetDetail"
+		resultType="com.hyundai.handsome.vo.ProductVO">
+		select p.pid, p.bno, b.bname, p.clarge, p.cmedium,
+		p.csmall, p.pname,
+		p.pprice, p.pdetail, c.ccolorcode, c.cimage1,
+		c.cimage2, c.cimage3, c.cimage4, c.cimage5, c.cimage6
+		from product p
+		join brand b on p.bno = b.bno
+		join
+		color c on p.pid = c.pid
+		where
+		p.pid=#{pid} AND
+		c.ccolorcode=#{ccolorcode}
+	</select>
+
+	<select id="productGetColor"
+		resultType="com.hyundai.handsome.vo.ProductColorVO">
+		select pid, ccolorcode,ccolorname, ccolorimage, cimage1,
+		cimage2, cimage3, cimage4, cimage5, cimage6 from color where
+		pid=#{pid}
+	</select>
+
+	<select id="sex_chart"
+		resultType="com.hyundai.handsome.vo.ChartVO">
+		select COUNT(clarge) as cnt, clarge from product GROUP BY
+		clarge ORDER BY clarge;
+	</select>
+
+	<select id="bno_chart"
+		resultType="com.hyundai.handsome.vo.ChartVO">
+		select COUNT(bno) as cnt, bno from product GROUP BY bno
+		ORDER BY bno;
+	</select>
+
+	<select id="productGetStock" parameterType="map"
+		resultType="com.hyundai.handsome.vo.ProductStockVO">
+		select distinct(s.ssize), c.pid, c.ccolorcode,
+		c.ccolorname, s.samount
+		from color c
+		join stock s on c.pid = s.pid AND
+		c.ccolorcode=#{ccolorcode}
+		where c.pid=#{pid}
+		ORDER BY
+		CASE s.ssize
+		WHEN 'XXS' THEN 0
+		WHEN 'XS' THEN 1
+		WHEN 'S' THEN 2
+		WHEN 'M' THEN 3
+		WHEN 'L' THEN 4
+		WHEN 'XL' THEN 5
+		WHEN 'XXL' THEN 6
+		END
+		ASC,
+		to_number(REGEXP_REPLACE(s.ssize, '[^0-9]'))
+	</select>
+
+	<select id="getList"
+		resultType="com.hyundai.handsome.vo.ProductVO">
+		select p.pid, pname, pprice,
+		(select bname from brand b
+		where b.bno=p.bno)
+		as bname, c.cimage1, c.cimage2
+		from product p
+		join
+		color c on p.pid =
+		c.pid
+	</select>
+
+	<select id="read" resultType="com.hyundai.handsome.vo.ProductVO">
+		select pid, bno, clarge, cmedium,
+		csamll, pname, pprice, pdetail, c.cimage1, c.cimage2
+		from product p
+		join color c on p.pid = c.pid
+		where bno = #{bno}
+	</select>
+
+	<!-- <select id="getListWithPaging" resultType="com.hyundai.handsome.vo.ProductVO"> 
+		<![CDATA[ SELECT p.*, (select bname from brand b where p.bno=b.bno) bname 
+		FROM (select rownum rn, pid, pname, pprice, cimage1, cimage2, bno from (select 
+		* from product where clarge = #{param2} and cmedium = #{param3} and csmall 
+		= #{param4})) p WHERE p.rn > (#{param1.pageNum} -1) * #{param1.amount} and 
+		p.rn <= #{param1.pageNum} * #{param1.amount} ]]> </select> -->
+	<!-- <select id="getListWithPaging" resultType="com.hyundai.handsome.vo.ProductVO"> 
+		<![CDATA[ SELECT rownum rn, p.id, p.pname, p.ppice, b.bname, c.cimage1, c.cimage2, 
+		c.ccolorimage FROM product p join brand b on p.bno = b.bno join color c on 
+		p.pid = c.pid where clarge = #{clarge} and cmedium = #{cmedium} and csmall 
+		= #{csmall} and p.rn > (#{param1.pageNum} -1) * #{param1.amount} and p.rn 
+		<= #{param1.pageNum} * #{param1.amount}; ]]> </select> -->
+
+	<!-- 김나형 - pid중복이슈 -->
+	<!-- <select id="getListWithPaging" resultType="com.hyundai.handsome.vo.ProductVO"> 
+		<![CDATA[ SELECT rnum, pid, pname, pprice, bno, bname, clarge, cmedium, csmall, 
+		cimage1, cimage2, ccolorcode FROM ( SELECT ROWNUM as rnum, pid, pname, pprice, 
+		bno, bname, clarge, cmedium, csmall, cimage1, cimage2, ccolorcode FROM ( 
+		SELECT p.pid as pid, p.pname as pname, p.pprice as pprice, b.bno as bno, 
+		b.bname as bname, p.clarge as clarge, p.cmedium as cmedium, p.csmall as csmall, 
+		c.cimage1 as cimage1, c.cimage2 as cimage2, c.ccolorcode as ccolorcode FROM 
+		product p, brand b, color c WHERE p.clarge = #{clarge} AND p.cmedium = #{cmedium} 
+		AND p.csmall = #{csmall} AND b.bno = p.bno AND p.pid = c.pid ) WHERE ROWNUM 
+		<= #{param1.pageNum} * #{param1.amount} ) WHERE rnum > (#{param1.pageNum} 
+		-1) * #{param1.amount} ]]> </select> -->
+
+
+	<!-- 김가희 - category별 productList -->
+	<select id="getListWithPaging"
+		resultType="com.hyundai.handsome.vo.ProductVO">
+		SELECT p.*, (select bname from brand b where p.bno=b.bno) bname
+		FROM
+		(select distinct pid,rownum rn, pname, pprice, bno
+		from (select * from
+		product where clarge = #{clarge}
+		<if test="cmedium !='' ">
+			and cmedium = #{cmedium}
+		</if>
+		<if test="csmall !='' ">
+			and csmall =#{csmall}
+		</if>
+		)) p
+			<![CDATA[
+			WHERE p.rn > (#{param1.pageNum} -1) * #{param1.amount} and p.rn <= #{param1.pageNum} * #{param1.amount}
+    		]]>
+	</select>
+
+	<!-- 김가희 productList페이징을 위한 category별 product 총개수 -->
+	<select id="getTotal" resultType="int">
+		select count(*)
+		from product
+		where clarge = #{clarge}
+		<if test="cmedium !='' ">
+			and cmedium = #{cmedium}
+		</if>
+		<if test="csmall !='' ">
+			and csmall =#{csmall}
+		</if>
+	</select>
+
+	<!-- 김가희 brand별 productList -->
+	<select id="getListWithPagingBrand"
+		resultType="com.hyundai.handsome.vo.ProductVO">
+		SELECT p.*
+		FROM (select distinct pid,rownum rn, a.pname, a.pprice,
+		a.bno, b. bname
+		from product a
+		join brand b on b.bno=a.bno
+		where
+		b.bname=#{bname}
+		) p
+		WHERE  <![CDATA[ p.rn >  (#{param1.pageNum} -1) * #{param1.amount} and p.rn <=#{param1.pageNum} * #{param1.amount} ]]>
+	</select>
+
+	<!-- 김가희 brandList페이징을 위한 brand별 product 총개수 -->
+	<select id="getTotalBrand" resultType="int">
+		SELECT count(*)
+		FROM
+		(select distinct pid
+		from product a
+		join brand b on b.bno=a.bno
+		where b.bname=#{bname}
+		) p
+	</select>
+
+	<!-- <select id="getList" resultType="com.jmh.domain.ProductVO"> select 
+		pid, pname, pprice, (select bname from brand b where b.bno=p.bno) as bname, 
+		t01_imageurl, t02_imageurl from product p </select> <select id="read" resultType="com.jmh.domain.ProductVO"> 
+		select pid, bno, clarge, cmedium, csmall, pname, pprice, pdetail, t01_imageurl, 
+		t02_imageurl from product where bno = #{bno} </select> <select id="getListWithPaging" 
+		resultType="com.jmh.domain.ProductVO"> <![CDATA[ SELECT p.*, (select bname 
+		from brand b where p.bno=b.bno) bname FROM (select rownum rn, pid, pname, 
+		pprice, t01_imageurl, t02_imageurl, bno from (select * from product where 
+		clarge = #{param2} and cmedium = #{param3} and csmall = #{param4})) p WHERE 
+		p.rn > (#{param1.pageNum} -1) * #{param1.amount} and p.rn <= #{param1.pageNum} 
+		* #{param1.amount} ]]> </select> <select id="getTotal" resultType="int"> 
+		select count(*) from product where clarge = #{param1} and cmedium = #{param2} 
+		and csmall = #{param3} </select> -->
+
+	<!-- 김가희 사이즈 순서별로 가져오기 -->
+	<select id="getSize" resultType="String">
+		select distinct ssize
+		from stock
+		where pid=#{pid}
+		ORDER BY
+		CASE ssize
+		WHEN 'XXS' THEN 0
+		WHEN 'XS' THEN 1
+		WHEN 'S' THEN 2
+		WHEN 'M' THEN 3
+		WHEN 'L' THEN 4
+		WHEN 'XL' THEN 5
+		WHEN 'XXL' THEN 6
+		END
+		ASC,
+		to_number(REGEXP_REPLACE(ssize, '[^0-9]'))
+	</select>
+</mapper>

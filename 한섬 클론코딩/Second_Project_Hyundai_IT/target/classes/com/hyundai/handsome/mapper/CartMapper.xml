@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 작성자: 김가희 , 김나형 -->
+
+<mapper namespace="com.hyundai.handsome.mapper.CartMapper">
+
+	<insert id="cartAdd">
+		insert into mycart values (cart_seq.NEXTVAL, #{mid},
+		#{cart.pid},
+		#{cart.psize}, #{cart.pcolor}, #{cart.pamount})
+	</insert>
+
+	<select id="cartOverlap" resultType="_int">
+		select count(*)
+		from mycart
+		where mid=#{mid} and pcolor=#{cart.pcolor} and psize=#{cart.psize}
+	</select>
+
+	<update id="cartOverlapUpdate">
+		UPDATE myCart
+		SET pamount = pamount + #{amount}
+		WHERE
+		pcolor=#{pcolor} and psize=#{psize}
+	</update>
+
+	<select id="cartList"
+		resultType="com.hyundai.handsome.vo.CartVO">
+		select mid, pid, psize, pcolor, pamount, cid
+		from (select
+		rownum rn, a.*
+		from (select * from mycart where mid =#{param1})a
+		)b
+		order by b.rn desc
+	</select>
+
+	<select id="cartSelect"
+		resultType="com.hyundai.handsome.vo.CartVO">
+		select *
+		from mycart
+		where cid=#{cid}
+	</select>
+
+	<delete id="cartDelete" parameterType="java.util.List">
+		delete mycart
+		where
+		<foreach collection="list" item="c" separator="OR">
+			cid=#{c}
+		</foreach>
+	</delete>
+
+	<update id="cartUpdate">
+		UPDATE myCart
+		SET pamount = #{qty}
+		WHERE cid = #{cid}
+	</update>
+
+	<update id="updateOption">
+		UPDATE myCart
+		SET pcolor=#{color},psize=#{size}
+		WHERE
+		cid = #{cid}
+	</update>
+
+	<select id="cartCnt" resultType="_int">
+		select count(pid)
+		from mycart
+		where mid = #{mid}
+	</select>
+
+</mapper>

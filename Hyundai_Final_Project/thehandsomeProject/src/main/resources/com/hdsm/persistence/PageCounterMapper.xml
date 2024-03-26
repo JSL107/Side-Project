@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hdsm.persistence.PageCounterMapper">
+	<select id="getclosetindex" resultType="Integer">
+		select nvl(viewindex, 0) from closetcounter
+		where rownum=1
+	</select>
+	
+	<update id="updateClosetCounter" parameterType="hashMap">
+		<![CDATA[
+			update closetcounter
+			set
+			views${index}=#{closetcount},
+			viewindex=#{viewindex},
+			viewupdate=sysdate
+		]]>
+	</update>
+	
+	<select id="getmakeupindex" resultType="Integer">
+		select nvl(viewindex, 0) from makeupcounter
+		where rownum=1
+	</select>
+	
+	<update id="updateMakeupCounter" parameterType="hashMap">
+		<![CDATA[
+			update makeupcounter
+			set
+			views${index}=#{makeupcount},
+			viewindex=#{viewindex},
+			viewupdate=sysdate
+		]]>
+	</update>
+	
+		
+	<update id="updateViewCounter" parameterType="String">
+		update closetcounter
+		set
+		viewcounter = viewcounter+#{closet}
+	</update>
+	
+
+	
+	<insert id="insertClosetCounter">
+		insert into closetcounter(views1, v1date, views2, v2date, views3, v3date, views4, v4date, views5, v5date, views6, v6date, views7, v7date, views8,v8date, viewdate, viewcounter)
+values(0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,sysdate+1, 0)
+	</insert>
+	
+	<insert id="insertMakeupCounter">
+		insert into makeupcounter(views1, v1date, views2, v2date, views3, v3date, views4, v4date, views5, v5date, views6, v6date, views7, v7date, views8,v8date, viewdate, viewcounter)
+values(0,null,0,null,0,null,0,null,0,null,0,null,0,null,0,null,sysdate+1, 0)
+	</insert>
+	
+	<insert id="insertEventCounter">
+	insert into eventcounter(closet, makeup, eventdate)
+	values(
+	(select views1+views2+views3+views4+views5+views6+views7+views8 as summary
+	from closetcounter
+	where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')),
+	(select views1+views2+views3+views4+views5+views6+views7+views8 as summary
+	from makeupcounter
+	where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')),
+	sysdate)
+	</insert>
+
+	<update id="setCount03">
+		update closetcounter
+		set 
+		views1 = viewcounter,
+		v1date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="setCount06">
+		update closetcounter
+		set 
+		views2 = viewcounter,
+		v2date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="setCount09">
+		update closetcounter
+		set 
+		views3 = viewcounter,
+		v3date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="setCount12">
+		update closetcounter
+		set 
+		views4 = viewcounter,
+		v4date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="setCount15">
+		update closetcounter
+		set 
+		views5 = viewcounter,
+		v5date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="setCount18">
+		update closetcounter
+		set 
+		views6 = viewcounter,
+		v6date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="setCount21">
+		update closetcounter
+		set 
+		views7 = viewcounter,
+		v7date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="setCount24">
+		update closetcounter
+		set 
+		views8 = viewcounter,
+		v8date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	
+	
+	
+	<update id="msetCount03">
+		update makeupcounter
+		set 
+		views1 = viewcounter,
+		v1date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="msetCount06">
+		update makeupcounter
+		set 
+		views2 = viewcounter,
+		v2date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="msetCount09">
+		update makeupcounter
+		set 
+		views3 = viewcounter,
+		v3date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="msetCount12">
+		update makeupcounter
+		set 
+		views4 = viewcounter,
+		v4date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="msetCount15">
+		update makeupcounter
+		set 
+		views5 = viewcounter,
+		v5date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="msetCount18">
+		update makeupcounter
+		set 
+		views6 = viewcounter,
+		v6date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="msetCount21">
+		update makeupcounter
+		set 
+		views7 = viewcounter,
+		v7date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+	<update id="msetCount24">
+		update makeupcounter
+		set 
+		views8 = viewcounter,
+		v8date = to_char(sysdate,'yyyymmddhh'),
+		viewcounter=0
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate,'yyyymmdd')
+	</update>
+
+	
+	
+	
+</mapper>

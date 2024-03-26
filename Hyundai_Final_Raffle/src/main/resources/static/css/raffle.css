@@ -1,0 +1,352 @@
+.raffle-list {
+    text-align: center;
+    width: 1080px;
+    margin: 0 auto;
+
+}
+
+.raffle-list .state {
+    color: #aaa;
+}
+
+.raffle-list .state > span {
+    display: block;
+    font-size: 28px;
+    line-height: 29px;
+    margin-top: 20px;
+}
+
+.raffle-list .state .timer {
+    font-weight: 300;
+    font-size: 130px;
+    line-height: 130px;
+    font-family: 'Martian Mono', monospace;
+
+}
+
+.raffle-list .state .timers {
+    font-weight: 300;
+    font-size: 130px;
+    line-height: 130px;
+    font-family: 'Martian Mono', monospace;
+}
+
+.raffle-list .btn-normal {
+    min-width: 400px;
+    height: 70px;
+    line-height: 66px;
+    font-size: 24px;
+    padding: 2px 60px 0 60px;
+    background: #000;
+    color: #fff;
+    display: inline-block;
+    width: 180px;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+/* list */
+.raffle-list > li {
+    padding: 100px 0 200px 0;
+}
+
+.raffle-list .state {
+    color: #aaa;
+}
+
+.raffle-list .state.soon {
+    color: #f00;
+}
+
+.raffle-list .state.active {
+    color: #0078ff;
+}
+
+.raffle-list .state > span {
+    display: block;
+    font-size: 28px;
+    line-height: 29px;
+    margin-top: 20px;
+}
+
+/* button */
+.button .btn-normal {
+    display: inline-block;
+    width: 180px;
+    height: 50px;
+    padding: 15px 13px 14px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.button .btn-normal.reverse {
+    background: #000;
+    color: #fff;
+}
+
+.button .btn-normal.reverse.active {
+    background: #0078ff;
+    border-color: #0078ff;
+    color: #fff;
+}
+
+.button .btn-normal.disable {
+    border-color: #ddd;
+    color: #aaa;
+}
+
+.button .btn-normal.announce {
+    width: auto;
+}
+
+.button .btn-normal.attend {
+    border-color: #ccc;
+    color: #000;
+}
+
+/* raffle */
+.wrap.raffle {
+    min-width: 1560px;
+    font-family: "Musinsa", sans-serif;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 100px;
+    margin: 0 auto;
+}
+
+.raffle-top {
+    width: 1080px;
+    height: 30px;
+    line-height: 30px;
+    font-family: "Musinsa", sans-serif;
+    margin: 85px auto;
+    position: relative;
+}
+
+.raffle-top .tit {
+    font-size: 28px;
+    padding-right: 200px;
+}
+
+.raffle-top .info {
+    display: block;
+    font-size: 18px;
+    position: relative;
+    left: 0;
+    top: -30px;
+    text-align: right;
+}
+
+.raffle-top .info a > i {
+    vertical-align: top;
+    margin: 3px 6px 0 0;
+}
+
+.raffle-top .info .layer-toggle {
+    width: 218px;
+    background-color: #0078ff;
+    font-size: 11px;
+    color: #fff;
+    line-height: 17px;
+    letter-spacing: -0.5px;
+    white-space: normal;
+    word-break: keep-all;
+    padding: 8px 10px;
+    text-align: left;
+    border-radius: 3px;
+    position: absolute;
+    top: 100%;
+    right: -32px;
+    margin: 7px 0 0;
+    z-index: 100;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+.raffle-top .info .layer-toggle:before {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: #0078ff;
+    transform: rotate(45deg);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin: -3px 0 0 0px;
+}
+
+/* list */
+.raffle-list {
+    width: 1080px;
+    font-family: "Musinsa", sans-serif;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.raffle-list > li {
+    padding: 100px 0 200px 0;
+}
+
+.raffle-list .state {
+    color: #aaa;
+}
+
+.raffle-list .state.soon {
+    color: #f00;
+}
+
+.raffle-list .state.active {
+    color: #0078ff;
+}
+
+.raffle-list .state .timer {
+    font-family: "Musinsa Stencil", sans-serif;
+    font-weight: 300;
+    font-size: 130px;
+    line-height: 130px;
+}
+
+.raffle-list .state > span {
+    display: block;
+    font-size: 28px;
+    line-height: 29px;
+    margin-top: 20px;
+}
+
+.raffle-list .button {
+    margin: 20px 0 10px 0;
+    position: relative;
+}
+
+.raffle-list .button .link {
+    display: inline-block;
+    margin: 19px 16px 0 -83px;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.raffle-list .button .win > div {
+    display: none;
+    position: absolute;
+    top: -35px;
+    left: 47%;
+    width: 335px;
+    height: 29px;
+    margin-left: -130px;
+    padding: 5px 5px 4px;
+    background: #0078ff;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.75;
+    white-space: nowrap;
+}
+
+.raffle-list .button .win > div:after {
+    display: block;
+    position: absolute;
+    top: 29px;
+    left: 50%;
+    width: 0;
+    height: 0;
+    margin-left: -4px;
+    border: 4px solid transparent;
+    border-top-color: #0078ff;
+    pointer-events: none;
+    content: "";
+}
+
+.raffle-list .button .btn-normal {
+    min-width: 400px;
+    height: 70px;
+    line-height: 66px;
+    font-size: 24px;
+    padding: 2px 60px 0 60px;
+}
+
+.raffle-list .btn-layer-user {
+    display: inline-block;
+    background: none;
+    border: 0;
+    font-size: 18px;
+    line-height: 18px;
+    text-decoration: underline;
+    padding: 5px;
+    margin: 25px 0 5px 0;
+    text-decoration-color: #0d0d0d;
+}
+
+.ui-layer {
+    padding: 50px 90px;
+    position: fixed;
+    left: 65%;
+    top: 70%;
+    z-index: 99999;
+    margin: -600px;
+    background: #ffffff;
+    border: 1px solid lightgrey ;
+    box-shadow: rgb(255 255 255 / 12%) 0px 0px 2px 0px inset, rgb(0 0 0 / 5%) 0px 0px 2px 1px, rgb(0 0 0 / 30%) 0px 12px 60px;
+}
+
+.ico {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url(/resources/static/images/icon.png) no-repeat;
+    overflow: hidden;
+    text-indent: -9999px;
+}
+
+.ico.ico-close {
+    background-position: -60px -10px;
+}
+
+.btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.raffle-view > span {
+    display: inline-block;
+    height: 30px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #aaa;
+    line-height: 30px;
+    padding: 2px 14px 0;
+    margin-top: 10px;
+}
+
+.raffle-view .app-info ul {
+    padding-top: 7px;
+    padding-left: 347px;
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+.raffle-view .app-info li {
+    margin-top: 5px;
+    font-size: 16px;
+    line-height: 21px;
+    color: #777;
+    position: relative;
+    text-align: left;
+}
+.raffle-view .app-info li strong {
+    display: inline-block;
+    width: 121px;
+    color: #000000;
+    text-align: left;
+}
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundai.handsome.mapper.QnaMapper">
+	<!-- <select id="getQnaList"
+		resultType="com.hyundai.handsome.vo.QnaVO">
+		select *
+		from qna
+		order by qid
+	</select> -->
+
+	<select id="getQnaDetail"
+		resultType="com.hyundai.handsome.vo.QnaVO">
+		select * from qna where qid=#{qid}
+	</select>
+
+	<!-- Qna 목록 -->
+	<select id="getQnaList"
+		resultType="com.hyundai.handsome.vo.QnaVO">
+      
+
+          select * from (
+              select a.*, rownum as rn from(
+              select qid, mid, qcategory, qdate, qtitle, qcontent,  qreplydate, qreply, state
+            from qna 
+            order by qid desc)a)b
+            where
+    <![CDATA[        
+             rownum <= #{pageNum}*#{amount}
+            and rn > (#{pageNum} - 1) * #{amount}
+      ]]>     
+	</select>
+
+	<!-- Qna수 -->
+	<select id="qnaGetTotal" resultType="int">
+
+		select count(*) from qna
+
+	</select>
+
+	<update id="qnaModify">
+
+		update qna 
+		set qdate=sysdate,
+		qcategory=#{qcategory}, qtitle=#{qtitle}, qcontent=#{qcontent}
+		where qid =#{qid}
+
+	</update>
+	<!-- QNA 정보 삭제 -->
+	<delete id="qnaDelete">
+
+		delete from Qna where qid = #{qid}
+
+	</delete>
+
+	<!-- QNA 등록 -->
+	<insert id="qnaAdd">
+		insert into qna
+		(qid,mid,qcategory,qtitle,qcontent,qimage)
+		values (QNA_SEQ.NEXTVAL,#{mid},#{qcategory},#{qtitle},#{qcontent},#{qimage})
+	</insert>
+	
+	<!-- QNA 답변등록(관리자) -->
+	<update id="qnaReplyAdd">
+		update qna 
+		set qreplydate=sysdate,
+		state='[답변완료]', qreply=#{param2}
+		where qid =#{param1}
+	</update>
+
+	<!-- 이미지 등록 -->
+	<insert id="addImage">
+
+		insert into image(eid, fileName, uploadPath, uuid)
+		values (#{qid},
+		#{fileName}, #{uploadPath}, #{uuid})
+
+	</insert>
+
+</mapper>

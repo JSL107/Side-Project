@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hdsm.persistence.ReviewsMapper">
+
+	<!-- 마이페이지 - 상품평 작성 -->
+	<insert id="reviewsInsert">
+		insert into reviews
+		(oid, rdate, rcontent, mid, pid, ccolorcode)
+		values (#{oid}, sysdate,TO_CLOB(#{rcontent}),#{mid},#{pid},#{ccolorcode})
+	</insert>
+
+	<select id="chkReviews" resultType="int">
+		SELECT count(*)
+		FROM reviews
+		WHERE oid = #{oid} and pid = #{pid}
+	</select>
+
+	<select id="checkReviewWrite" parameterType="string" resultType="com.hdsm.domain.ReviewsVO">
+		select oid, mid, pid, ccolorcode
+		from (
+		    select ol.oid as oid, ol.mid as mid, oi.pid as pid, oi.ccolorcode as ccolorcode
+		    from orderlist ol
+		    left join orderitem oi
+		    on ol.oid = oi.oid
+		    left join reviews r
+		    on ol.oid = r.oid
+		    where r.oid is null and ol.mid = #{mid} and oi.pid = #{pid}
+		    order by ol.odate desc
+		)
+		where <![CDATA[rownum <= 1]]>
+	</select>
+	
+	<!-- 상품평 리스트 가져오기 -->
+	<select id="getReview" parameterType="string" resultType="com.hdsm.domain.ReviewsDTO">
+		select 
+			r.oid as oid, 
+			r.pid as pid, 
+			r.ccolorcode as ccolorcode, 
+			r.mid as mid, 
+			r.rdate as rdate, 
+			r.rcontent as rcontent, 
+			m.mgrade as mgrade, 
+			p.pname as pname, 
+			p.pprice as pprice, 
+			p.bname as bname, 
+			c.cname as cname, 
+			c.c_thumbnail1 as c_thumbnail1, 
+			oi.ssize as ssize
+		from reviews r
+		left join member m
+		on r.mid = m.mid
+		left join product p
+		on r.pid = p.pid
+		left join color c
+		on r.ccolorcode = c.ccolorcode
+		left join orderlist ol
+		on r.oid = ol.oid
+		left join orderitem oi
+		on c.ccolorcode = oi.ccolorcode and r.oid = oi.oid
+		where r.oid = #{oid} and c.ccolorcode = #{ccolorcode}
+	</select>
+	
+	<!-- 상품평 리스트 가져오기 -->
+	<select id="getReviewList" parameterType="string" resultType="com.hdsm.domain.ReviewsDTO">
+		select 
+			r.oid as oid, 
+			r.pid as pid, 
+			r.ccolorcode as ccolorcode, 
+			r.mid as mid, 
+			r.rdate as rdate, 
+			r.rcontent as rcontent, 
+			m.mgrade as mgrade, 
+			p.pname as pname, 
+			p.pprice as pprice, 
+			p.bname as bname, 
+			c.cname as cname, 
+			c.c_thumbnail1 as c_thumbnail1, 
+			oi.ssize as ssize
+		from reviews r
+		left join member m
+		on r.mid = m.mid
+		left join product p
+		on r.pid = p.pid
+		left join color c
+		on r.ccolorcode = c.ccolorcode
+		left join orderlist ol
+		on r.oid = ol.oid
+		left join orderitem oi
+		on c.ccolorcode = oi.ccolorcode and r.oid = oi.oid
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="pid != null and pid !='' ">
+				r.pid = #{pid}
+			</if>
+		</trim>
+		ORDER BY r.rdate DESC
+	</select>
+	
+	<select id="getReviewListWithPaging" parameterType="string" resultType="com.hdsm.domain.ReviewsDTO">
+		SELECT 
+			oid, 
+			pid,
+			ccolorcode, 
+			mid, 
+			rdate,
+			rcontent, 
+			mgrade, 
+			pname, 
+			pprice, 
+			bname, 
+			cname, 
+			c_thumbnail1, 
+			ssize
+		FROM
+		(
+			SELECT
+				rownum as rn,
+				oid,
+				pid,
+				ccolorcode, 
+				mid,
+				rdate,
+				rcontent, 
+				mgrade, 
+				pname, 
+				pprice, 
+				bname, 
+				cname,
+				c_thumbnail1,
+				ssize
+			FROM
+			(
+				SELECT 
+					r.oid as oid, 
+					r.pid as pid,
+					r.ccolorcode as ccolorcode, 
+					r.mid as mid, 
+					r.rdate as rdate,
+					r.rcontent as rcontent, 
+					m.mgrade as mgrade, 
+					p.pname as pname, 
+					p.pprice as pprice, 
+					p.bname as bname, 
+					c.cname as cname, 
+					c.c_thumbnail1 as c_thumbnail1, 
+					oi.ssize as ssize
+		        from reviews r
+				left join member m
+				on r.mid = m.mid
+				left join product p
+				on r.pid = p.pid
+				left join color c
+				on r.ccolorcode = c.ccolorcode
+				left join orderlist ol
+				on r.oid = ol.oid
+				left join orderitem oi
+				on c.ccolorcode = oi.ccolorcode and r.oid = oi.oid
+		        ORDER BY rdate DESC
+			)
+			<trim prefix="WHERE" prefixOverrides="AND |OR">
+				<if test="pid != null and pid !='' ">
+					pid = #{pid} 
+					AND 
+					<![CDATA[rownum <= #{cri.pageNum} * #{cri.amount}]]> 
+				</if>
+			</trim>	
+		)
+		WHERE
+		<![CDATA[rn >  (#{cri.pageNum} - 1) * #{cri.amount}]]>
+	</select>
+	
+	<!-- 한 회원이 작성한 리뷰의 갯수를 가져온다.-->
+	<select id="UserReviewCount" resultType="int">
+		SELECT COUNT(*)
+		FROM reviews
+		WHERE mid=#{mid}
+	</select>
+	
+</mapper> 
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- CouponMapper.xml @author 이준석 @since 10.12 수정일 수정자 수정내용 2022.10.12 이준석 
+	최초생성 -->
+<mapper namespace="com.hyundai.handsome.mapper.CouponMapper">
+
+    <select id="getCouponCount" resultType="int">
+        select count(*)
+        from coupon c
+                 join member m on m.mid = c.mid
+        where c.mid = #{mid}
+    </select>
+
+    <select id="getCoupon"
+            resultType="com.hyundai.handsome.vo.CouponVO">
+        select *
+        from coupon
+        where mid = #{mid}
+    </select>
+
+    <!-- 쿠폰 등록 -->
+    <insert id="addCoupon">
+        insert into coupon(ccode, eid, mid, cname,
+                           cstartdate, cenddate, cstate)
+        values (#{ccode}, #{eid}, #{mid},
+                #{cname}, sysdate, sysdate + 7, 1)
+    </insert>
+
+    <!-- 이벤트를 통해서 쿠폰 발급 -->
+    <insert id="eventCoupon">
+        insert into coupon(ccode, eid, mid, cname,
+                           cstartdate, cenddate, cstate)
+        values (#{ccode}, #{eid}, #{mid},
+                #{cname}, sysdate, sysdate + 7, 1)
+    </insert>
+
+    <select id="getCouponList"
+            resultType="com.hyundai.handsome.vo.MyCouponListViewVO">
+        select * from my_coupon_list_view where mid=#{mid}
+    </select>
+
+    <select id="getCouponEid" resultType="int">
+        select eid from coupon where ccode = #{ccode}
+    </select>
+</mapper>

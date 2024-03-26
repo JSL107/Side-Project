@@ -1,0 +1,634 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%
+
+    request.setCharacterEncoding("UTF-8");
+
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>더한섬닷컴 | THE HANDSOME.COM</title>
+
+    <link rel="shortcut icon"
+          href="http://cdn.thehandsome.com/_ui/desktop/common/images/common/thehandsome_ic_16x16.ico">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/footer.css">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/layout.css">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/contents.css">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/popup.css">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/swiper.css">
+    <link rel="stylesheet" type="text/css" href="../../../resources/static/css/raffle.css">
+
+    <!-- 제이쿼리 cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- ui 공통 스크립트 -->
+    <script type="text/javascript" src="../../../resources/static/js/ui.js"></script>
+
+    <%-- sweetalert를 위한--%>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</head>
+<body oncontextmenu="return false">
+<div id="headerWrap">
+    <div class="header header_fixed header_main1903">
+        <script>
+
+
+            $(document).ready(function () {
+                $('#search').submit(function () {
+                    if ($('#word').val() == '') {
+                        alert('검색어를 입력해 주세요');
+                        return false;
+                    } else {
+                        let words = encodeURIComponent($("#word").val());
+                        $("#words").val(words);
+                        return true;
+                    }
+                }); // end submit()
+            });
+
+
+            function doSearch() {
+                $("#search").submit();
+            }
+
+            function doClose() {
+                document.getElementById("word").value = "";
+                $(".sbw1803").css("display", "none");
+
+            }
+
+            function openSearch() {
+                $(".sbw1803").css("display", "block");
+                $('#word').focus();
+            }
+
+
+            //START OF 메인 검색창////////////////////////
+            // #1067 - 201803 메인 개편
+            $(function () {
+
+                $('#query').click(function () {
+                    // 스타일 서치 아이템
+                    doStyleItem();
+                    $('.search_box_wrap').click(function () {
+                        if (!$('.search_box_wrap').hasClass('on')) {
+                            var dataHeight = $('.data_react').height();
+                            $("#transparent_mask").show();
+
+                            GA_Event('공통', '유틸_메뉴', '검색');
+                            $('.search_box_wrap').stop().animate({
+                                width: '406px',
+                                height: '+= dataHeight +"px"',
+                                "max-height": "430px",
+                                "opacity": 1
+                            }, 'fast');
+
+                            $('.search_box_wrap').addClass('on');
+                            $('.btn_search_tab').stop().show();
+
+                            $('.data_react').stop().show();
+
+                            $('#styleSearchSlider').hide();
+                            $('.search_box .search').stop().fadeIn('fast');
+
+
+                            //검색창 텝 >> style search slider
+                            $(document).find('#styleSearchSlider').flexslider({
+                                animation: "slide",
+                                slideshow: false,
+                                directionNav: true,
+                                after: function (slider) {
+                                    $("#styleSearchSlider .slides li").not(".clone").each(function (idx) {
+                                        if ($(this).hasClass("flex-active-slide")) {
+                                            $(".ss_txt_list li a").removeClass("on");
+                                            $(".ss_txt_list li:eq(" + idx + ") a").addClass('on');
+                                        }
+                                    });
+                                }
+                            });
+                            var styleTotal = $("#styleSearchSlider .slides li").size();
+                            if (styleTotal <= 1) {
+                                $("#styleSearchSlider .flex-direction-nav").hide();
+                            }
+
+                            //keyup 자동완성 리스트
+
+                            //keyup 자동완성 리스트
+                            $('#query').keyup(function (e) {
+                                if (!$('#query').val() == "") {
+                                    $('.search_tab').hide();
+
+                                    $('.search_box_wrap').stop().animate({width: '477px'}, 'fast', function () {
+                                        $('.search_autocomplete').show();
+                                    });
+                                    $('.search_box_wrap.on .search_box input[type="search"]').stop().animate({width: '461px'}, 'fast');
+                                } else {
+                                    $('.search_autocomplete').hide();
+                                    $('.search_tab').show();
+
+                                    $('.search_box_wrap').stop().animate({width: '406px'});
+                                    $('.search_box_wrap.on .search_box input[type="search"]').stop().animate({width: '390px'});
+
+                                }
+                                $('.autocomplete_txt li a').each(function () {
+                                    if (!$(this).hasClass('brand_main')) {
+                                        $(this).html($(this).html().replace("<strong>", ""));
+                                        $(this).html($(this).html().replace("</strong>", ""));
+
+                                        if ($(this).html().indexOf($('#searchBox').val()) > -1) {
+                                            $(this).html($(this).html().replace($('#searchBox').val(), "<strong>" + $('#searchBox').val() + "</strong>"));
+                                        }
+                                    }
+                                });
+                            });
+
+                            //검색창 click시 이미 value 값이 있을 때
+                            if (!$('#query').val() == "") {
+                                $('.search_box_wrap').stop().animate({width: '477px', 'opacity': 1}, 'fast');
+                                $('.search_box_wrap.on .search_box input[type="search"]').stop().animate({width: '461px'}, 'fast');
+                            } else {
+                                $('.search_box_wrap.on .search_box input[type="search"]').stop().animate({width: '390px'}, 'fast');
+                            }
+
+                        }
+
+                        $('#styleSearchSlider').fadeIn();
+
+                        //close button
+                        $('.search_box a span.btn_close').on('click', function () {
+
+                            $('.search_box_wrap').stop().animate({
+                                width: '30px',
+                                height: '-= dataHeight +"px"',
+                                "opacity": 0
+                            });
+
+                            $('.data_react').stop().hide();
+                            $('.btn_search_tab').stop().hide();
+                            $('.search_box_wrap').removeClass('on');
+                            $("#transparent_mask").hide();
+                            $('.search_box .search').stop().fadeOut('fast');
+                            if (!$('#query').val() == "") {
+                                $('#query').val("");
+                                $('.search_autocomplete').hide();
+                                $('.search_tab').show();
+                            }
+                            return false;
+                        });
+                    });
+                    $("#transparent_mask").click(function () {
+                        if ($('.search_box_wrap').hasClass('on')) {
+
+                            $('.search_box_wrap').stop().animate({
+                                width: '30px',
+                                height: '-= dataHeight +"px"',
+                                "opacity": 0
+                            });
+
+                            $('.data_react').stop().hide();
+                            $('.btn_search_tab').stop().hide();
+                            $('.search_box_wrap').removeClass('on');
+                            $("#transparent_mask").hide();
+                            $('.search_box .search').stop().fadeOut('fast');
+                        }
+                    });
+                    //검색창 텝
+                    $(document).on('click', '.btn_search_tab a', function () {
+                        $(this).addClass('on');
+                        $(this).siblings().removeClass('on');
+                        $('.data_react .s_tab').stop().hide();
+                        var activeTab = $(this).attr('rel');
+                        $('.' + activeTab).stop().show();
+                    });
+                });
+            });
+
+        </script>
+
+        <div class="top_nav topnav1903">
+            <div class="top_nav_wrap clearfix">
+                <!-- before -->
+                <div class="brand_menu brandMenu1903">
+                    <ul class="clearfix">
+                        <!-- 선호 브랜드 없음 -->
+                        <li><span class="on"><a href="/">HOME</a></span></li>
+                    </ul> <!-- clearfix end -->
+                </div> <!-- brand_menu end -->
+                <div class="util_menu">
+                    <c:choose>
+                        <c:when test="${name !=null}">
+                            <ul id="kakaoLogin" class="clearfix">
+                                <li style="margin-top: 9px;">
+                                        ${nickname}님 환영합니다
+                                </li>
+                                <c:choose>
+                                    <c:when test="${name == '' || name == null}">
+                                        <li id="login_btn1"><a href="http://localhost:8080/member/loginForm/">로그인</a>
+                                        </li>
+                                    </c:when>
+                                </c:choose>
+                                <li class="header_dropmemu mypage">
+                                    <a href="http://localhost:8080http://localhost:8080/member/mypage"
+                                       class="btn">마이페이지</a>
+                                    <div class="list"
+                                         style="display: none; height: 164px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                                        <ul>
+                                            <li><!-- 주문조회 -->
+                                                <a href="http://localhost:8080/member/orderlist">주문조회</a>
+                                            </li>
+                                            <li><!-- 온라인등급 -->
+                                                <a href="http://localhost:8080/member/myGradeInfo">회원 등급</a>
+                                            </li>
+                                            <li><!-- 회원정보변경 -->
+                                                <a href="http://localhost:8080/member/pwcheck">회원정보변경</a>
+                                            </li>
+                                            <li><!-- 위시리스트 -->
+                                                <a href="http://localhost:8080/member/wishList">위시리스트</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </c:when>
+                        <c:otherwise>
+                            <ul id="normalLogin" class="clearfix">
+                                <li style="margin-top: 9px;">
+                                        ${mname}님 환영합니다
+                                </li>
+                                <li id="logout_btn">
+                                    <a href="http://localhost:8080/member/logout"> 로그아웃 </a>
+                                </li>
+
+                                <li class="header_dropmemu mypage">
+                                    <a href="http://localhost:8080/member/mypage" class="btn">마이페이지</a>
+                                    <div class="list"
+                                         style="display: none; height: 164px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+                                        <ul>
+                                            <li><!-- 주문조회 -->
+                                                <a href="http://localhost:8080/member/orderlist">주문조회</a>
+                                            </li>
+                                            <li><!-- 온라인등급 -->
+                                                <a href="http://localhost:8080/member/myGradeInfo">회원 등급</a>
+                                            </li>
+                                            <li><!-- 회원정보변경 -->
+                                                <a href="http://localhost:8080/member/pwcheck">회원정보변경</a>
+                                            </li>
+                                            <li><!-- 위시리스트 -->
+                                                <a href="http://localhost:8080/member/wishList">위시리스트</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </c:otherwise>
+                    </c:choose>
+                </div>     <!-- util_menu end -->
+                <div class="search_box_wrap sbw1803 on" id="searchBox"
+                     style="width: 406px; opacity: 1; max-height: 430px; display:none;">
+                    <form name="search" id="search"
+                          action="http://localhost:8080http://localhost:8080/product/searchList" method="post">
+                        <div class="search_box">
+                            <label for="query" class="hidden">search</label>
+                            <input type="search" id="word" value="" style="margin-top: 0.2px;" autocomplete="off"
+                                   style="display:none;">
+                            <input type="hidden" id="words" name="words" value="">
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                            <span class="placeholder"></span>
+                            <a href="javascript:doClose();" id="searchClose"
+                               style="width: 23px;height: 32px;float: left; position: absolute; top: 2px;right: 27px;"><span
+                                    class="btn_close">닫기</span></a>
+                            <a href="javascript:doSearch();" class="search" style="display: block;"><span
+                                    class="ico">검색</span></a>
+                        </div>
+                    </form>
+
+                    <!--검색박스 활성화 data_react  -->
+                    <!--<div class="data_react" style="display: block;">
+                       <div class="search_tab">
+                           <div class="btn_search_tab">
+                               <a href="javascript:void(0);" rel="recent_search" class="btn_recent_search on" onclick="">최근 검색어</a>
+                           </div>
+                           최근 검색어
+                           <div class="recent_search s_tab">
+                               <ul id="mykeyword">
+                                   <li class="searchkey">
+                                       <a href="javascript:void(0);" onclick="javascript:doKeyword('자켓');">자켓</a>
+                                       <a href="javascript:removeMyKeyword('자켓')" class="btn_close">삭제</a></li>
+                                   <div class="clear_search_hs">
+                                       <a href="javascript:removeAllMyKeyword()">검색기록전체삭제</a>
+                                   </div>
+                               </ul>
+                           </div>
+                       </div>
+                   </div> -->
+                    <!--//검색박스 활성화 data_react -->
+                </div>
+            </div> <!-- top_nav_wrap end -->
+        </div> <!-- top_nav end -->
+
+        <div class="gnbwarp com clearfix">
+            <h1 class="logo logo1903">
+                <a href="http://localhost:8080">thehandsome.com</a>
+            </h1>
+            <div class="gnb_nav gnb_nav1903 hscene1906 hscene1910">
+                <h2 class="invisible">주메뉴</h2>
+                <ul class="cate_m cate_banner gnbul1" id="cate_m_main">
+                    <li></li>
+                    <!-- 대분류_여성  -->
+                    <li>
+                        <a href="http://localhost:8080/product/list/we/" class="">여성<span class="arr">arrow</span></a>
+                        <div class="sub_back" style="height: 0px; border-bottom: 0px;">
+                            <div class="sub_menu clearfix" style="display: none;">
+                                <ul class="al_frt1 sm_dep1"
+                                    style="margin-left: 165px; margin-bottom: 25px;">
+                                    <li>
+                                        <a href="http://localhost:8080/product/list/we/">전체보기<!-- 전체보기 --></a>
+                                    </li>
+                                    <li>
+                                        <a href="http://localhost:8080/product/list/we01/">아우터</a>
+                                        <ul class="clearfix sm_dep2">
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we011/">재킷</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we012/">점퍼</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we013/">가디건/베스트</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we014/">트렌치 코트</a></li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we015/">코트</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we016/">다운/패딩</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="http://localhost:8080/product/list/we02/">탑</a>
+                                        <ul class="clearfix sm_dep2">
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we021/">티셔츠</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we022/">블라우스</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we023/">셔츠</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we024/">니트</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="http://localhost:8080/product/list/we03/">드레스</a>
+                                        <ul class="clearfix sm_dep2">
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we031/">미니 드레스</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we032/">미디 드레스</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we033/">롱/맥시 드레스</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="http://localhost:8080/product/list/we04/">팬츠</a>
+                                        <ul class="clearfix sm_dep2">
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we041/">캐주얼</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we042/">포멀</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we043/">데님</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we044/">쇼츠</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li style="margin-right: 0px">
+                                        <a href="http://localhost:8080/product/list/we05/">스커트</a>
+                                        <ul class="clearfix sm_dep2">
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we051/">미니 스커트</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we052/">펜슬 스커트</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we053/">플레어 스커트</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/we054/">롱/맥시 스커트</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="gnb_banner float_right"></div>
+                            </div>
+                        </div>
+                    </li><!-- //대분류_여성 -->
+
+                    <!-- 대분류_잡화 -->
+                    <li><a href="http://localhost:8080/product/list/as/" class="">잡화<span class="arr">arrow</span></a>
+                        <div class="sub_back" style="height: 0px; border-bottom: 0px;">
+                            <div class="sub_menu clearfix" style="display: none;">
+                                <ul class="al_frt1 sm_dep1"
+                                    style="margin-left: 165px; float: right; margin-bottom: 25px;">
+                                    <li>
+                                        <a href="http://localhost:8080/product/list/as/">전체보기</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="http://localhost:8080/product/list/as01/">여성 슈즈</a>
+                                        <ul class="clearfix sm_dep2">
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as011/">부츠</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as012/">로퍼/블로퍼</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as013/">스니커즈</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as014/">플랫</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as015/">힐/슬링백</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as016/">샌들/슬라이드</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as017/">기타 슈즈</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <a href="http://localhost:8080/product/list/as03/">여성백</a>
+                                    <ul class="clearfix sm_dep2">
+                                        <li>
+                                            <a href="http://localhost:8080/product/list/as031/">토트백</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/product/list/as032/">숄더/크로스바디백</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/product/list/as033/">기타 백</a>
+                                        </li>
+                                    </ul>
+                                    </li>
+
+                                    <a href="http://localhost:8080/product/list/as05/">머플러/스카프</a>
+                                    <ul class="clearfix sm_dep2">
+                                        <li>
+                                            <a href="http://localhost:8080/product/list/as051/">머플러</a>
+                                        </li>
+                                        <li>
+                                            <a href="http://localhost:8080/product/list/as052/">스카프</a>
+                                        </li>
+                                    </ul>
+                                    </li>
+                                    <li>
+                                        <a href="http://localhost:8080/product/list/as06/">주얼리</a>
+                                        <ul class="clearfix sm_dep2">
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as061/">이어링/커프</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as062/">목걸이</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as063/">팔찌</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as064/">반지</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as065/">기타 주얼리</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="http://localhost:8080/product/list/as07/">기타 ACC</a>
+                                        <ul class="clearfix sm_dep2">
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as071/">모자</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as072/">양말</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as073/">장갑</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as074/">벨트</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as075/">지갑</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as076/">헤어 ACC</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as077/">테크 ACC</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/as078/">기타 소품</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="gnb_banner float_right"></div>
+                            </div>
+                        </div>
+                    </li><!-- //대분류_잡화 -->
+                    <!-- 대분류_뷰티  -->
+                    <li>
+                        <a href="http://localhost:8080/product/list/be/" class="">뷰티<span class="arr">arrow</span></a>
+                        <div class="sub_back" style="height: 0px; border-bottom: 0px;">
+                            <div class="sub_menu clearfix" style="display: none;">
+                                <ul class="al_frt1 sm_dep1"
+                                    style="margin-left: 165px; margin-bottom: 25px;">
+                                    <li>
+                                        <a href="http://localhost:8080/product/list/be/">전체보기<!-- 전체보기 --></a>
+                                    </li>
+                                    <li>
+                                        <a href="http://localhost:8080/product/list/be01/">메이크업</a>
+                                        <ul class="clearfix sm_dep2">
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/be011/">페이스 메이크업</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/be012/">아이 메이크업</a>
+                                            </li>
+                                            <li>
+                                                <a href="http://localhost:8080/product/list/be013/">립 메이크업</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <div class="gnb_banner float_right"></div>
+                            </div>
+                        </div>
+                    </li><!-- //대분류_뷰티 -->
+
+                    <li><a href="http://localhost:8080/closet/closet/" style="color: red">Best Dresser
+                        <i class="ico-new">new</i>
+                        <span class="arr">arrow</span></a></li>
+                    <li><a href="http://localhost:8080/makeup/main"  style="color: red;" >Cosmetic Studio
+                        <i class="ico-new">new</i>
+                        <span class="arr">arrow</span></a></li>
+                </ul>
+
+                <ul class="cate_m cate_banner gnbul2" id="cate_m_main" style="float: right;">
+                    <!-- 대분류_잡화 -->
+                    <!-- 대분류_이벤트 -->
+                    <li><a href="http://localhost:8080/event/eventlist/">이벤트
+                        <span class="arr">arrow</span></a></li><!-- //대분류_타임세일 -->
+                    <li>
+                            <a href='http://localhost:9000/raffle?mid=<%session.getAttribute("mid");%>'>Raffle<span
+                                    class="arr">arrow</span></a>
+                    </li>
+                </ul>
+
+                </ul>
+            </div>
+            <div id="transparent_mask" style="display: none;"></div>
+            <div class="util_menu util_menu1803">
+                <ul class="clearfix">
+                    <li>
+                        <a href="javascript:openSearch();"><span class="ico_sh">search</span></a></li>
+                    <li>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div> <!-- header end -->
+</div> <!-- headerWrap end -->
+
+
+
+	

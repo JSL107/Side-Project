@@ -1,0 +1,49 @@
+.calender {
+    display: flex;
+    flex: 1;
+    max-width: fit-content;
+    height: 59px;
+    background-color: white;
+    overflow: hidden;
+    align-items: center;
+    padding: 0px;
+}
+
+.date__picker {
+    padding: 9px 30px 9px 30px;
+    width: 155px;
+}
+
+.date__picker:hover {
+    background-color: #EBEBEB;
+    border-radius: 32px;
+}
+
+.navi__line {
+    align-self: center;
+    border-right: 1px solid #DDDDDD;
+    height: 32px !important;
+    flex: 0 0 0 ;
+}
+
+.date__picker_text {
+    border: none;
+    outline-width: 0;
+    border: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 18px;
+    color: #717171;
+    font-weight: 400;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.04px;
+    background-color: inherit;
+}
+
+@media screen and (max-width: 1568px){
+    .date__picker {
+        padding: 9px 20px 9px 20px;
+        width: 64px;
+    }
+}

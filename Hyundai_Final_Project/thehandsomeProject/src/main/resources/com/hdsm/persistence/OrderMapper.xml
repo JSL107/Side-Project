@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsm.persistence.OrderMapper">
+
+	<!-- 사용자의 주문 정보를 등록하는 sql -->
+	<insert id="insertOrderUser">
+		insert into
+		<choose>
+			<when test="oaccountdeadline==null">
+				orderlist(oid,mid,ozipcode,oaddress1,oaddress2,odate,
+				oreceiver,otel,ocal,omessage,ousermilege,ousedcoupon,opayment,ostatus,odiscounted,imp_uid,ccode,oprice)
+				values(#{oid},#{mid},#{ozipcode},#{oaddress1},#{oaddress2},
+				sysdate,#{oreceiver},#{otel},#{ocal},#{omessage},#{ousermilege},#{ousedcoupon},
+				#{opayment},#{ostatus},#{odiscounted},#{imp_uid},#{ccode}, #{oprice})
+			</when>
+			<otherwise>
+				orderlist
+				values(#{oid},#{mid},#{ozipcode},#{oaddress1},#{oaddress2},
+				sysdate,#{oreceiver},#{otel},#{ocal},#{omessage},#{ousermilege},#{ousedcoupon},
+				#{opayment},#{ostatus},to_date(#{oaccountdeadline},'YYYY.MM.DD'),#{odiscounted},#{imp_uid},#{ccode},#{oprice})
+			</otherwise>
+		</choose>
+	</insert>
+
+	<!-- 주문한 사용자의 상품을 등록하는 sql -->
+	<insert id="insertOrderProduct">
+		insert into orderitem
+		values(#{oid},#{pid},#{ccolorcode},#{ssize},#{oamount},#{oprice})
+	</insert>
+
+	<!-- 사용자의 쿠폰 목록을 가져오는 sql -->
+	<select id="getcoupon" resultType="com.hdsm.domain.CouponVO">
+		select *
+		from coupon
+		where member_mid = #{mid}
+	</select>
+
+	<select id="getcouponwithevent" resultType="com.hdsm.domain.CouponVO">
+		SELECT
+			c.ccode      AS ccode,
+			c.event_eid  AS eid,
+			c.member_mid AS mid,
+			c.cname      AS cname,
+			c.cstate     AS cstate,
+			e.elimit     AS elimit
+		FROM
+			coupon c
+				JOIN event e ON c.event_eid = e.eid
+		where
+			c.member_mid = #{mid}
+		and cstate != 1
+	</select>
+
+	<!-- 마일리지 정보를 등록하는 sql -->
+	<insert id="insertMilege">
+		insert into mileage
+		values(mino_seq.NEXTVAL,#{member_mid},
+		#{micategory},#{micontent},sysdate,#{mipoint})
+	</insert>
+
+	<!-- 마일리지의 합을 가져오는 sql -->
+	<select id="SumMilege" resultType="int">
+		select nvl(sum(mipoint),0)
+		from mileage
+		where member_mid=#{mid}
+	</select>
+
+	<!--HS포인트를 바꾸는 sql문  -->
+	<update id="updateHspoint">
+	update member
+	set mpoint=#{mpoint} where mid=#{mid}
+	</update>
+
+	<!-- 쿠폰을 삭제하는 sql문 -->
+	<delete id="deleteCoupon">
+		delete from coupon
+		where ccode=#{ccode} and member_mid=#{member_mid}
+	</delete>
+
+	<!-- 배송지 관리에 저장된 주소를 가져오는 sql문 -->
+	<select id="getAddress" resultType="com.hdsm.domain.AddressVO">
+		select *
+		from address where member_mid=#{mid}
+	</select>
+
+	<!-- 주문번호를 통해 주문한 사용자의 정보를 조회 -->
+	<select id="getOrderUserItem" resultType="com.hdsm.domain.OrderUserVO">
+		select *
+		from orderList
+		where oid=#{oid}
+	</select>
+
+	<!-- 주문 번호에 대한 상품들을 조회 -->
+	<select id="getOrderItem" resultType="com.hdsm.domain.OrderItemVO">
+		select *
+		from orderItem
+		where oid=#{oid}
+	</select>
+
+	<!-- 최근 순으로 회원의 주문 정보를 조회  -->
+	<select id="getOrderUserVO" resultType="com.hdsm.domain.OrderUserVO">
+	select *
+	from orderList
+	where mid=#{mid}
+	order by odate desc
+	</select>
+
+	<!-- 주문 정보들 중 최근 정보를 조회 -->
+	<select id="getRecentOrderUserVO" resultType="com.hdsm.domain.OrderUserVO">
+ 	select *
+ 	from
+ 	(select *
+ 	from orderlist
+ 	where mid=#{mid}
+ 	order by odate desc)
+ 	where rownum=1
+	</select>
+
+	<!-- 쿠폰의 개수를 가져온다 -->
+	<select id="getCouponCount" resultType="int">
+	select count(*)
+	from coupon
+	where member_mid=#{mid} and CSTATE=0
+	</select>
+
+	
+	<!-- 주문한 사용자의 정보중 주문취소 -->
+	<update id="cancleOrderUser">
+		update orderlist
+		set ostatus=3 
+		where oid=#{oid}
+	</update>
+
+	<!-- 주문한 사용자의 상품들을 삭제 -->
+	<delete id="deleteOrderItem">
+	delete from orderitem
+	where oid=#{oid}
+	</delete>
+
+	<!-- 주문한 사용자의 마일리지 포인트를 제거 -->
+	<delete id="deleteMilege">
+	delete from mileage
+	where micontent like #{oid}||'%'
+	</delete>
+
+	<!-- 사용자가 해당 상품 주문한 내역 가져오는 sql  -->
+	<select id="getOrderCheck" resultType="_int">
+	SELECT COUNT(*)
+	FROM orderitem a
+	INNER JOIN orderlist b
+	ON a.oid = b.oid
+	WHERE a.pid=#{pid} AND b.mid=#{mid}
+	</select>
+
+	<select id="getOrderCheckVO" resultType="com.hdsm.domain.OrderCheckVO">
+		SELECT a.oid, a.pid, b.mid, a.ccolorcode, a.ssize
+		FROM orderitem a
+		INNER JOIN orderlist b
+		ON a.oid = b.oid
+		WHERE a.pid=#{pid} AND b.mid=#{mid}
+	</select>
+
+	<select id="getOrderItemProductInfo" resultType="com.hdsm.domain.OrderItemVO">
+		SELECT a.oid, a.pid, a.ccolorcode, a.ssize, b.cname
+		FROM orderitem a
+		INNER JOIN color b
+		ON a.ccolorcode = b.ccolorcode
+		WHERE a.oid = #{oid}
+	</select>
+
+	<select id="getOrderInfo" resultType="com.hdsm.domain.OrderUserVO">
+		select *
+        from orderlist
+		where mid=#{mid}
+		and oid=#{oid}
+	</select>
+
+
+</mapper>

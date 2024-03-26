@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundai.handsome.mapper.MemberMapper">
+<select id="selectMember" resultType="com.hyundai.handsome.vo.MemberVO">
+	select mid from member
+</select>
+	<insert id="memberJoin">
+		insert into member values(#{mid}, #{mpassword},
+		#{mname}, #{memail}, #{mtel},
+		#{maddress1},#{maddress2},#{maddress3},'Friend',sysdate,5000,1)
+	</insert>
+	<!-- 아이디 중복검사 -->
+	<select id="idCheck" resultType="int">
+
+		select count(*) from member
+		where mid = #{mid}
+
+	</select>
+	<select id="memberLogin"
+		resultType="com.hyundai.handsome.vo.MemberVO">
+		select * from member where mid=#{mid}
+	</select>
+
+	<select id="myPage" resultType="com.hyundai.handsome.vo.MemberVO">
+		select * from member where mid=#{mid}
+	</select>
+	
+<!-- 	<select id ="myPageWishList" resultType="com.hyndai.handsome.vo.WishListrVO">
+		select pid from 
+	</select> -->
+</mapper>

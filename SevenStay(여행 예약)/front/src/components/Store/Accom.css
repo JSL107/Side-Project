@@ -1,0 +1,74 @@
+.accoms {
+    display: flex;
+    padding-bottom: 1rem;
+    padding: 10px;
+    cursor: pointer;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.accom__images {
+    width: 210px;
+    height: 131.25px;
+    padding: 10px;
+}
+
+.accom__image {
+    border-radius: 10px;
+    height: 100%;
+}
+
+.accom__info {
+    width: 100%;
+    padding-left: 100px;
+    text-align: left;
+}
+
+.accom__info__top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.heart__button {
+    cursor:pointer;
+    padding: 10px;
+    height: 24px;
+}
+
+.heart__button:hover {
+    background-color: rgba(185, 184, 184, 0.26);
+    border-radius: 32px;
+}
+
+.accom__name {
+    margin: 0 0 0.25rem 0;
+    padding-top: 10px;
+}
+
+.thin__line {
+    border-bottom: 1px solid #EBEBEB;
+    width: 10%;
+    margin: 5px;
+}
+
+.accom__description {
+    font-style: italic;
+    text-align: left;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.accom__phoneNumber {
+    margin-top: 2.3rem;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #4a69bd;
+    font-size: 1.25rem;
+    text-align: right;
+}
+
+.border__top {
+    margin: 0 auto;
+    border-top: 1px solid #EBEBEB;
+    width: 49%;
+}

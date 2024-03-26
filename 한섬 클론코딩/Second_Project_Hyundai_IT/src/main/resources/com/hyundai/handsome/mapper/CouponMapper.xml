@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- /* 작성자 : 이준석 김찬중 * 쿠폰 테이블에 쿠폰 추가, 쿠폰 리스트 조회, 쿠폰 상세정보 조회, 쿠폰의 할인금액 가져오기*/ -->
+<mapper namespace="com.hyundai.handsome.mapper.CouponMapper">
+
+	<!-- 쿠폰 개수 가져오기 -->
+	<select id="getCouponCount" resultType="int">
+		select count(*)
+		from
+		coupon c
+		join member m on m.mid = c.mid
+		where c.mid = #{mid}
+	</select>
+	<!-- 쿠폰 데이터 가져오기 -->
+	<select id="getCoupon"
+		resultType="com.hyundai.handsome.vo.CouponVO">
+		select *
+		from coupon
+		where mid = #{mid}
+	</select>
+
+	<!-- 쿠폰 등록 -->
+	<insert id="addCoupon">
+		insert into coupon(ccode, eid, mid, cname,
+		cstartdate, cenddate, cstate)
+		values (#{ccode}, #{eid}, #{mid},
+		#{cname}, sysdate, sysdate + 7, 1)
+	</insert>
+
+	<!-- 이벤트를 통해서 쿠폰 발급 -->
+	<insert id="eventCoupon">
+		insert into coupon(ccode, eid, mid, cname,
+		cstartdate, cenddate, cstate)
+		values (#{ccode}, #{eid}, #{mid},
+		#{cname}, sysdate, sysdate + 7, 1)
+	</insert>
+	<!-- 쿠폰 리스트 가져오기 -->
+	<select id="getCouponList"
+		resultType="com.hyundai.handsome.vo.MyCouponListViewVO">
+		select * from my_coupon_list_view where mid=#{mid}
+	</select>
+	<!-- 쿠폰 코드를 가지고 이벤트 아이디값 가져오기 -->
+	<select id="getCouponEid" resultType="int">
+		select eid from coupon
+		where ccode = #{ccode}
+	</select>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsm.persistence.OrderMapper">
+
+		
+	<update id="paymentCancle" parameterType="String">
+		update orderlist
+		set ostatus=4
+		where imp_uid=#{imp_uid}
+	</update>
+	<update id="changeStatus">
+		update orderlist
+		set ostatus=#{ostatus}
+		where oid=#{oid}
+	</update>
+	<select id="getOrderList" resultType="com.hdsm.domain.order.OrderUserVO">
+		<![CDATA[
+			select * from
+			orderlist	
+			order by odate desc
+		]]>
+	</select>
+	
+	<select id="orderStatus" resultType="map">
+		<![CDATA[
+			select A.ostatus, NVL(B.count, 0) as count
+			from
+			(select level as ostatus
+			from dual
+			connect by level<7) A
+			left outer join
+			(select ostatus, count(*) as count
+			from orderlist
+			group by ostatus) B on A.ostatus=B.ostatus
+			order by A.ostatus
+		]]>
+	</select>
+
+	
+</mapper>

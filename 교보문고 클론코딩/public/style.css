@@ -1,0 +1,332 @@
+/* reset */
+body {
+  margin: 15px auto;
+  width: 120vh;
+}
+
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0px;
+}
+
+a,
+a:link,
+a:visited,
+a:active,
+a:hover {
+    text-decoration: none;
+    color: #212529;
+}
+
+/* General */
+.Header {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.Header__top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: gray;
+}
+
+.Header__top__menus li {
+  list-style-type: none;
+  margin-left: 20px;
+}
+
+.Header__top__menus {
+  display: flex;
+}
+
+.Header__top__login__menu {
+  display: flex;
+  margin-right: 20px;
+  align-items: center;
+}
+
+.Header__top__login__menu li {
+  list-style-type: none;
+  margin-right: 10px;
+}
+
+.Header__top__login__menu i {
+  font-size: 1rem;
+  color: black;
+}
+
+.Header__top__login__menu button {
+  margin-right: 20px;
+  font-size: 0.7rem;
+  color: gray;
+  background: none;
+  border-color: gray;
+}
+
+.Header__bottom {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 30px;
+}
+
+.Header__bottom__search {
+  text-align: center;
+}
+
+.Header__bottom__search__menu {
+  color: gray;
+  font-size: 0.75rem;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.Header__bottom__search__menu li {
+  list-style-type: none;
+  margin-right: 10px;
+}
+
+.Header__bottom__search__btn {
+  border: 2px solid cadetblue;
+  border-radius: 30px;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Header__bottom__search__btn form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
+}
+
+.Header__bottom__search__btn input {
+  border: none;
+  outline: none;
+}
+
+.Header__bottom__search__btn input::placeholder {
+  color: cadetblue;
+}
+
+.Header__bottom__search__btn button {
+  border: none;
+  background: none;
+  color: cadetblue;
+}
+
+  /* Bestseller */
+  
+  .Bestseller {
+    /* border: 2px slateblue dashed; */
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+  
+  }
+  
+  .Bestseller__header {
+    /* border: 2px darkblue dashed; */
+    display: flex;
+    align-items: center;
+    margin: 0 20px;
+    padding: 10px 0;
+  }
+  
+  .Bestseller__header__main {
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .Bestseller__header__sub {
+    display: flex;
+    margin-left: 20px;
+  }
+  
+  .Bestseller__header__sub li {
+    margin: 10px;
+    font-size: 1rem;
+  }
+  
+  .Bestseller__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+    /* border: 1px solid #ADB5BD; */
+  }
+  
+  .Bestseller__body__content {
+    display: flex;
+    align-items: center;
+  }
+  
+  .Bestseller__body__content li {
+      border: #ADB5BD 1px solid;
+      width: 205px; 
+      height: 380px;
+      margin:15px;
+      align-items: center;
+  }
+  
+  .cover, .category, .title {
+    text-align: center;
+    margin: 3px 0px;
+  }
+
+  .cover img{
+    width: 200px;
+    height: 300px;
+    margin-bottom: 5px;
+  }
+
+  .category {
+    margin: 3px;
+    font-size: 12px;
+    font-weight: 300;
+  }
+  
+  .title{
+      font-weight: 600;;
+  }
+
+.Footer{
+
+  margin-top:70px;
+  background:#f5f5f5 url('http://image.kyobobook.co.kr/ink/images/common/bg_footer3.gif') 0 0 repeat-x;
+  *position:relative;
+  height: auto;
+}
+
+.Footer__area::after{
+    content:'';
+    display:block;
+    clear:both;
+}
+.Footer__area {
+  margin:0 0;
+  padding:0 30px 30px;
+  background:url('http://image.kyobobook.co.kr/ink/images/common/bg_footer3.gif') 0 0 repeat-x;
+  color:#666;
+  *zoom:1;
+}
+
+.Footer__area .Footer__menu {
+    float:left;
+    height:44px;
+    background-color:#8b8b8b;
+    line-height:15px;
+}
+
+.Footer__area .Footer__menu li {
+    float:left;
+    padding:16px 13px 0 14px;
+    height:28px;
+    text-align:center;
+    background:url('http://image.kyobobook.co.kr/ink/images/common/line_footer.gif') no-repeat left center;
+}
+
+.Footer__area .Footer__menu li:first-child{
+    background-image:none;
+    padding-left:14px;
+}
+.Footer__area .Footer__menu a{
+    text-decoration:none;
+    color:#f1f0f0;
+}
+
+.Footer__area .Footer__menu a:hover{
+    text-decoration:underline;
+    color:#fff;
+}
+
+.Footer__area .Footer__menu strong{
+    color:#fff;
+    text-decoration:underline;
+}
+  
+.Footer__area .Data__area{
+    float:left;width:460px;
+    margin:18px 0 0 0;
+}
+
+
+.Footer__area .Logo__area{
+    display: flex;
+    clear:both;
+    padding-top:21px;
+}
+
+
+
+.Footer__area .Shortcut__list{
+    float:right;
+    width: 150px;
+    height: 44px;
+}
+
+.Footer__area .Shortcut__list .btn_open {
+    padding-top:15px;
+    padding-bottom:13px;
+    border:1px solid #6d6d6d;
+    background:#6d6d6d url('http://image.kyobobook.co.kr/ink/images/common/arr_shortcut2.png') no-repeat right 0;
+    color:#fff;
+    font-weight:bold;
+    padding-right:27px;
+    text-align:center;
+    text-transform:uppercase;
+
+}
+
+.Footer__area .Promotion__area {
+    float:right;
+    width:460px;
+    font-size:11px;
+    line-height:18px;
+    margin:18px 0 0 20px;
+}
+
+.Footer__area .Promotion__area p{
+    font-size:11px;
+    line-height:18px;
+    color:#666;
+}
+
+.Footer__area .Promotion__area a:link{
+    text-decoration:underline;
+    color:#666;
+}
+
+.Footer__area .Promotion__area a:hover {
+    text-decoration:underline;
+    color:#3c5fe1;
+}
+
+.Footer__area .Mark__area{
+    float:right;
+    width:460px;
+    margin-top:10px;
+    position:relative;
+}
+
+.Footer__area .Mark__area a{
+    display:inline-block;
+    padding:10px 0 0 52px;
+    height:38px;font-size:11px;
+    line-height:15px;
+    background:url('http://image.kyobobook.co.kr/ink/images/common/mark_isms_02.png') no-repeat 0 0;
+}
+
+.Footer__area .Mark__area p{
+    position:absolute;
+    left:168px;top:10px;
+    font-size:11px;
+    color:#666666;
+    line-height:1.5;
+}
+

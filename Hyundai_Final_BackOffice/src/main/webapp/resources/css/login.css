@@ -1,0 +1,103 @@
+/* * { */
+	box-sizing: border-box;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.logo_area {
+	text-align: center;	
+	margin-top: 78px;
+}
+
+.body {
+	text-align: center;
+}
+
+.logo {
+	width: 345px;
+	height: 84px;
+	margin-left: 0;
+	margin-top:50;
+	text-align: center;
+}
+
+.body .login_form {
+	width: 570px;
+	height: 650px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 49px;
+	padding: 20px;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 0 1px 14px 6px rgba(0, 0, 0, 0.11);
+	background-color: #fff;
+}
+
+.body .login_text {
+	width: 132px;
+	height: 46px;
+	margin: 0 124px 76px 123px;
+	font-family: Inter;
+	font-size: 44px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: center;
+	color: #424242;
+}
+
+.body .input_id {
+	width: 379px;
+	height: 63px;
+	margin: 76px 0 30px;
+	padding: 20px 162px 19px 27px;
+	border-radius: 4px;
+	border: solid 2px #666;
+	background-color: #fff;
+}
+
+.body .input_pw {
+	width: 379px;
+	height: 63px;
+	margin: 30px 0 25px;
+	padding: 20px 143px 19px 27px;
+	border-radius: 4px;
+	border: solid 2px #666;
+	background-color: #fff;
+}
+
+.body .login_button {
+	width: 379px;
+	height: 63px;
+	margin: 25px 0 30px;
+	padding: 16px 159px 18px 153px;
+	background-color: #222;
+	border-radius: 10px 10px 10px 10px;
+}
+
+.body .login_button_text {
+	font-family: Inter;
+	font-size: 20px;
+	font-weight: bold;
+	font-stretch: normal;
+	font-style: normal;
+	text-align: center;
+	color: #fff;
+}
+
+.body .-helphandsomecom {
+	width: 350px;
+	margin-left: 80px;
+	font-family: Inter;
+	font-size: 16px;
+	font-weight: normal;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+	text-align: left;
+	color: #777;
+	margin: auto;
+}

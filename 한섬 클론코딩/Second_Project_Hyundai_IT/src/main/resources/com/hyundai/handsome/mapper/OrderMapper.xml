@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- /* 작성자 : 이준석 김찬중 * 마이페이지에서 회원 정보 가져오기, 회원 가입, 회원 id 중복 체크, 로그인, 시큐리티 
+	적용 로그인 페이지, 마이페이지 가져오기, 아이디 찾기, 회원 정보 변경, 회원 탈퇴*/ -->
+<mapper namespace="com.hyundai.handsome.mapper.OrderMapper">
+	<!-- 주문하기에 필요한 데이터를 OrderView로 생성하여 결과값 출력 -->
+	<select id="getOrderInfo"
+		resultType="com.hyundai.handsome.vo.OrderViewVO">
+		select distinct *
+		from order_view
+		where mid = #{mid}
+		and pid =
+		#{pid}
+		and ccolorcode = #{ccolorcode}
+		and ssize = #{ssize}
+	</select>
+	<!-- 장바구니에서 담은 상품들 주문 -->
+	<insert id="addOrderList">
+		insert into orderlist (OID, MID, OZIPCODE, OADDRESS1,
+		OADDRESS2, ODATE,
+		ORECEIVER, OTEL, OUSEDPOINT,
+		OUSEDCOUPON, OPAYMENT,
+		OSTATUS, OACCOUNTDEADLINE, ODISCOUNTED)
+		values (orderlist_seq.nextVal,
+		#{mid}, #{ozipcode}, #{oaddress1},
+		#{oaddress2}, sysdate, #{oreceiver},
+		#{otel},
+		#{ousedpoint}, #{ousedcoupon}, #{opayment}, #{ostatus},
+		sysdate + 7, #{odiscounted})
+	</insert>
+	<!-- 바로주문 -->
+	<insert id="addOrderItem">
+		insert
+		into orderitem (OID, PID, CCOLORCODE, SSIZE,
+		OAMOUNT)
+		values (orderlist_seq.CURRVAL, #{pid}, #{ccolorcode},
+		#{ssize}, #{oamount})
+	</insert>
+
+	<!-- 마이페이지에서 주문한 상품을 보여주기 위한 MyOrderView 테이블 불러오기 -->
+	<select id="selectOrderList"
+		resultType="com.hyundai.handsome.vo.MyPageOrderViewVO">
+		select * from mypage_order where mid=#{mid}
+	</select>
+	<!-- 마이페이지에서 주문한 상품을 보여주기 위한 oid 값을 가져오기 -->
+	<select id="getOrder" resultType="int">
+		select oid from orderlist where
+		mid=#{mid}
+	</select>
+</mapper>

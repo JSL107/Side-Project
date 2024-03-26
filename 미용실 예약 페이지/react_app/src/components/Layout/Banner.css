@@ -1,0 +1,48 @@
+.banner {
+    color: white;
+    object-fit: contain;
+    height: 500px;
+   }
+   
+   .banner__contents {
+    color: #000;
+    position: relative;
+    top: 80%;
+    left: -40%;
+    padding: 12px 24px;
+    margin: 0px 0px 0px 0px;
+    transform: translate(0%, -130%);
+   }
+   
+   .banner__title {
+    position: relative;
+    left: 0em;
+    font-size: 2em;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+   }
+
+   .banner__description {
+    position: relative;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+   }
+
+   .reserve__button {
+    color: #000;
+    background-color: #ffffcc;
+    background-color: #FFFF;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    white-space: nowrap;
+    padding: 12px 24px;
+}
+   

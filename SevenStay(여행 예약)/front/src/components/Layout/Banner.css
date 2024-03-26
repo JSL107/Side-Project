@@ -1,0 +1,32 @@
+.content {
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    padding: 50px 50px;
+}
+
+.banner .banner__image {
+    overflow: hidden;
+    min-width: 101%;
+    min-height: 101%;
+    border-radius: 50px;
+}
+
+.banner__text {
+    position: absolute;
+    top: 80%;
+    left: 20%;
+    padding: 12px 24px;
+    transform: translate(10%, -50%);
+    color: white;
+}
+
+.banner__text h1 {
+    font-size: 6rem;
+}
+
+.banner__text p {
+    font-size: 1.2rem;
+    font-size: 20px;
+}

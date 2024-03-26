@@ -1,0 +1,35 @@
+::selection {
+  background: #f7f6f2;
+  color: #000;
+}
+
+.App {
+  /* text-align: center; */
+  overflow: hidden;
+  overflow-y: scroll;
+  /* scrollbar-width: auto; */
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+}
+
+.App::-webkit-scrollbar { 
+  width: 2px;
+  height: 5px;
+}
+
+body {
+  -ms-overflow-style:none; 
+}
+
+
+
+a, button {
+  cursor: pointer;
+  outline: none;
+  color: inherit;
+  font-family: inherit;
+  text-decoration: none;
+  border: none;
+  background: none;
+  margin: 0px;
+  padding: 0px;
+}

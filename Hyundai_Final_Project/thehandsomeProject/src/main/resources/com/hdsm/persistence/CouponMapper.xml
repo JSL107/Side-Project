@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsm.persistence.CouponMapper">
+    <insert id="eventCoupon">
+        insert into coupon
+        (ccode, event_eid, member_mid, cname, cstartdate, cenddate, cstate)
+        values (#{ccode}, #{event_eid}, #{member_mid}, #{cname}, sysdate, sysdate + 150, 0)
+    </insert>
+
+    <select id="getUserInfoForCoupon" resultType="Integer">
+        select count(member_mid)
+        from coupon
+        where member_mid = #{member_mid}
+          and event_eid = #{event_eid}
+    </select>
+
+    <update id="useCoupon" parameterType="string">
+        update coupon set cstate=1 where ccode=#{ccode}
+    </update>
+
+    <update id="useCancel" parameterType="string">
+        update coupon set cstate=0 where ccode=#{ccode}
+    </update>
+</mapper>

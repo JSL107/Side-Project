@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundai.handsome.mapper.EventMapper">
+	<select id="getEventList"
+		resultType="com.hyundai.handsome.vo.EventVO">
+		select *
+		from event
+		order by eid
+	</select>
+
+	<select id="getEventDetail"
+		resultType="com.hyundai.handsome.vo.EventVO">
+		select * from event where eid=#{eid}
+	</select>
+
+	<!-- 이벤트 목록 -->
+	<select id="eventGetList"
+		resultType="com.hyundai.handsome.vo.EventVO">
+      
+      <![CDATA[
+          select * from (
+              select /*+INDEX_DESC(event event_pk) */ 
+                  rownum as rn, eid, ename, edetail, estartdate, eenddate, eimage, eamount, elimit
+            from event 
+            where
+             
+    ]]>
+		<if test="keyword != null">
+			ename like '%'||#{keyword}||'%' and
+		</if>
+            
+    <![CDATA[        
+             rownum <= #{pageNum}*#{amount}
+            )
+        where rn > (#{pageNum} - 1) * #{amount}
+      ]]>
+
+	</select>
+
+	<!-- 이벤트 수 -->
+	<select id="eventGetTotal" resultType="int">
+
+		select count(*) from event
+
+		<if test="keyword != null">
+
+			where ename like '%' || #{keyword} || '%'
+
+		</if>
+
+	</select>
+
+	<update id="eventModify">
+
+		update event set ename=#{ename}, edetail=#{edetail}
+		where eid = #{eid}
+
+	</update>
+	<!-- 이벤트 정보 삭제 -->
+	<delete id="eventDelete">
+
+		delete from event where eid = #{eid}
+
+	</delete>
+
+	<!-- 이벤트 등록 -->
+	<insert id="addEvent">
+		<selectKey resultType="int" keyProperty="eid" order="AFTER">
+
+			SELECT
+			ISEQ$$_95815.currval from dual
+
+		</selectKey>
+		insert into event(ename, edetail,
+		estartdate,
+		eenddate, eimage, eamount,
+		elimit)
+		values( #{ename},
+		#{edetail},#{estartdate},
+		#{eenddate},#{eimage}, #{eamount},
+		#{elimit})
+	</insert>
+
+	<!-- 이미지 등록 -->
+	<insert id="addImage">
+
+		insert into image(eid, fileName, uploadPath, uuid)
+		values (#{eid},
+		#{fileName}, #{uploadPath}, #{uuid})
+
+	</insert>
+
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.hdsm.persistence.QnaMapper">
+
+    <resultMap type="com.hdsm.domain.QnaDTO" id="getQnaList">
+        <result property="qcontent" column="qcontent"/>
+        <result property="qreplycontent" column="qreplycontent"/>
+    </resultMap>
+
+	
+	<select id="getQnaList" parameterType="string" resultType="com.hdsm.domain.QnaDTO">
+		SELECT * FROM qna
+		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="pid != null and pid !='' ">
+				pid = #{pid}
+			</if>
+		</trim>
+		ORDER BY qdate DESC
+	</select>
+	
+	<insert id="insert" parameterType="com.hdsm.domain.QnaDTO">
+		INSERT INTO qna(qno, pid, mid, mname, qtitle, qcontent, qdate, qstate, qsecret, qsmssend, qphonenum, qemail)
+			VALUES(qna_seq.nextval, #{pid}, #{mid}, #{mname},#{qtitle}, #{qcontent}, sysdate, #{qstate}, #{qsecret}, #{qsmssend}, #{qphonenum}, #{qemail})
+	</insert>
+  	
+  	<update id="update" parameterType="com.hdsm.domain.QnaDTO">
+  		UPDATE qna
+  		SET
+  		qtitle=#{qtitle},
+  		qcontent=#{qcontent},
+  		qsecret=#{qsecret},
+  		qsmssend=#{qsmssend},
+  		qphonenum=#{qphonenum},
+  		qemail=#{qemail}
+  		WHERE qno=#{qno}
+  	</update>
+  	
+  	<delete id="delete">
+  		DELETE FROM qna WHERE qno=#{qno}
+  	</delete>
+  	
+  	<select id="getQnaCount" parameterType="com.hdsm.domain.QnaDTO" resultType="int">
+  		SELECT count(*) FROM qna
+  		<trim prefix="WHERE" prefixOverrides="AND |OR">
+			<if test="pid != null and pid !='' ">
+				pid = #{pid}
+			</if>
+		</trim>
+  	</select>
+  	
+  	<update id="setSecret">
+  		UPDATE qna
+  		SET
+  		qsecret=1
+  		where qno=#{qno}
+  	</update>
+  	
+  	<select id="readqno" parameterType="long" resultType="com.hdsm.domain.QnaDTO">
+  		SELECT * FROM
+  		qna
+  		WHERE qno=#{qno}
+  	</select>
+  	
+</mapper>

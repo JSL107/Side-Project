@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundai.handsome.mapper.EventMapper">
+    <select id="getEventList" resultType="com.hyundai.handsome.vo.EventVO">
+        select *
+        from event
+        order by eid
+    </select>
+    <select id="getEventDetail" resultType="com.hyundai.handsome.vo.EventVO">
+        select * from event where eid=#{eid}
+    </select>
+</mapper>

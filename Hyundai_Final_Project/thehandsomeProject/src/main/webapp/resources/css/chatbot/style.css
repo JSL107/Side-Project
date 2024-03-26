@@ -1,0 +1,11 @@
+/* CSS files add styling rules to your content */
+
+body .chatbot{
+  font-family: helvetica, arial, sans-serif;
+  margin: 15vw;
+}
+
+h1 .chatbot{
+  font-style: italic;
+  color: #373fff;
+}

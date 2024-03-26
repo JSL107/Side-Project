@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsm.persistence.OrderMapper">
+
+	<!-- 사용자의 주문 정보를 등록하는 sql -->
+	<insert id="insertOrderUser">
+		insert into
+		<choose>
+			<when test="oaccountdeadline==null">
+				orderlist(oid,mid,ozipcode,oaddress1,oaddress2,odate,
+				oreceiver,otel,ocal,omessage,ousermilege,ousedcoupon,opayment,ostatus,odiscounted)
+				values(#{oid},#{mid},#{ozipcode},#{oaddress1},#{oaddress2},
+				sysdate,#{oreceiver},#{otel},#{ocal},#{omessage},#{ousermilege},#{ousedcoupon},
+				#{opayment},#{ostatus},#{odiscounted})
+			</when>
+			<otherwise>
+				orderlist
+				values(#{oid},#{mid},#{ozipcode},#{oaddress1},#{oaddress2},
+				sysdate,#{oreceiver},#{otel},#{ocal},#{omessage},#{ousermilege},#{ousedcoupon},
+				#{opayment},#{ostatus},to_date(#{oaccountdeadline},'YYYY.MM.DD'),#{odiscounted})
+			</otherwise>
+		</choose>
+	</insert>
+
+	<!-- 주문한 사용자의 상품을 등록하는 sql -->
+	<insert id="insertOrderProduct">
+		insert into orderitem
+		values(#{oid},#{pid},#{ccolorcode},#{ssize},#{oamount})
+	</insert>
+
+	<!-- 사용자의 쿠폰 목록을 가져오는 sql -->
+	<select id="getcoupon" resultType="com.hdsm.domain.CouponVO">
+		select * from coupon where
+		member_mid=#{mid}
+	</select>
+
+	<insert id="insertMilege">
+		<!-- <selectKey keyProperty="mino"   resultClass="int" order="BEFORE">      
+			SELECT mino_seq.NEXTVAL AS mino FROM DUAL   
+		</selectKey> -->
+		insert into mileage
+		values(mino_seq.NEXTVAL,#{member_mid},
+		#{micategory},#{micontent},sysdate,#{mipoint})
+	</insert>
+
+	<update id="updateHspoint">
+	update member 
+	set mpoint=#{mpoint} where mid=#{mid}
+	</update>
+
+	<delete id="deleteCoupon">
+		delete from coupon 
+		where ccode=#{ccode} and member_mid=#{member_mid}
+	</delete>
+
+	<select id="getAddress" resultType="com.hdsm.domain.AddressVO">
+		select * 
+		from address where member_mid=#{mid}
+	</select>
+
+	<select id="getOrderUserItem" resultType="com.hdsm.domain.OrderUserVO">
+		select * 
+		from orderList
+		where oid=#{oid}
+
+	</select>
+
+	<select id="getOrderItem" resultType="com.hdsm.domain.OrderItemVO">
+		select *
+		from orderItem
+		where oid=#{oid}
+	</select>
+	
+	<select id="getOrderUserVO" resultType="com.hdsm.domain.OrderUserVO">
+	select * 
+	from orderList
+	where mid=#{mid}
+	</select>
+	
+	<select id="getOrderUserVOinOneMonth" resultType="com.hdsm.domain.OrderUserVO">
+	select * 
+	from orderList
+	where 
+	<![CDATA[
+	ADD_Month(sysdate,-1)<=odate
+	]]>
+	and mid=#{mid}
+	</select>
+	
+	
+</mapper>

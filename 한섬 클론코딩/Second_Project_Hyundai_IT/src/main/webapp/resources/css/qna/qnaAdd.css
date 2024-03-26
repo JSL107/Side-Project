@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none !important;
+}
+
+.img_ol {
+	padding-left: 0rem !important;
+	margin-top : 20px;
+}
+
+.contents {
+  padding: 44px 0 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contents .innercon {
+  width: 1204px;
+  display: flex;
+  justify-content: center;
+}
+
+.contents .innercon .lnbarea {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  width: 244px;
+}
+
+.contents .innercon .lnbarea h2 {
+  color: #101010;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.contents .innercon .lnbarea .lnb-depth1 {
+  padding-top: 28px;
+}
+
+.contents .innercon .lnbarea .lnb-depth1 a {
+  line-height: 24px;
+  color: #101010;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.contents .innercon .conarea {
+  width: 960px;
+}
+
+.contents .innercon .conarea .tit {
+  color: #101010;
+  font-size: 24px;
+  font-weight: 200;
+  padding-bottom: 24px;
+}
+
+.contents .innercon .conarea .infotxt {
+  padding: 20px 32px;
+  border-top: 2px solid #767572;
+  border-bottom: 1px solid #dbd9d6;
+  background-color: #f8f8f8;
+}
+
+.conarea .infotxt p {
+  padding: 0;
+
+  margin-top: 4px;
+  line-height: 24px;
+  font-size: 15px;
+}
+
+.contents .innercon .conarea .customeform {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.conarea .customerform .inqrForm .form-filter {
+  display: flex;
+  border-bottom: 1px #e7e7e7 solid;
+  padding: 23px 0 24px;
+}
+
+.conarea .customerform .inqrForm .form-filter p {
+  margin-right: 30px;
+}
+
+.select_small {
+  padding: 3px 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.contentsbox {
+  display: flex;
+  flex-direction: column;
+}
+
+.contentsbox .contentstop {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 0px 10px;
+}
+
+.imgcontents ul li {
+  list-style: initial;
+  margin-left: 15px;
+}
+
+.imgcontents {
+  padding: 15px 0;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.imgcontents .img_label {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  background: #e7e7e7;
+}
+
+.imgcontents .img_label i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.imgcontents .img_label input {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.btns {
+  text-align: center;
+  margin-top: 15px;
+}
+
+.btns .btn-cancel {
+  width: 276px;
+  color: #fff;
+  background-color: #101010;
+  padding: 10px 0;
+}
+
+.btns .btn-confirm {
+  width: 276px;
+  color: #101010;
+  background-color: #fff;
+  padding: 10px 0;
+}
+
+#a1 {
+	font-weight:600;
+}
+
+#a2 {
+	font-weight:600;
+}
+
+#a3 {
+	font-weight:600;
+}
+
+#a4 {
+	font-weight:600;
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:beans="http://www.springframework.org/schema/beans"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+      http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd"
+      xmlns:mvc="http://www.springframework.org/schema/mvc">
+
+   <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+   
+   <!-- Enables the Spring MVC @Controller programming model -->
+   <annotation-driven />
+
+   <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+   <resources mapping="/resources/**" location="/resources/" />
+
+   <!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+   <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <beans:property name="prefix" value="/WEB-INF/views/" />
+      <beans:property name="suffix" value=".jsp" />
+   </beans:bean>
+   	
+   <!-- 메일링 -->
+	<beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<beans:property name="host" value="smtp.gmail.com"/>
+		<beans:property name="port" value="587"/>
+		<beans:property name="defaultEncoding" value="utf-8"/>
+		<beans:property name="username" value="rndudah3581@gmail.com"/>
+		<beans:property name="password" value="iolcbylqhuiqltxv"/>
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<beans:prop key="mail.transport.protocol">smtp</beans:prop>
+				<beans:prop key="mail.smtp.auth">true</beans:prop> <!-- 2단계본인인증을 했으니 보안적으로 true라고 준다 -->
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.debug">true</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>	
+	
+   	<beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+      <beans:property name="locations" value="classpath:/application-API-KEY.properties" />
+   </beans:bean>
+   
+   
+   
+   	<!-- 인터셉터 객체 생성 -->
+	<beans:bean id="AuthLoginInterceptor" class=" com.hdsm.controller.AuthLoginInterceptor">
+	</beans:bean>
+	
+	<interceptors>
+	    <interceptor>
+	        <mvc:mapping path="/**"/>         
+	        <mvc:exclude-mapping path="/resources/**"/>			              
+	        <mvc:exclude-mapping path="/admin/login"/>
+	        <beans:ref bean="AuthLoginInterceptor"/>
+	    </interceptor>
+	</interceptors>
+   	
+   <context:component-scan base-package="com.hdsm.controller" />
+   <context:component-scan base-package="spring.service" />
+   
+</beans:beans>

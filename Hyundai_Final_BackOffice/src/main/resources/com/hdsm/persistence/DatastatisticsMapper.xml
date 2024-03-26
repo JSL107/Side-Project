@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hdsm.persistence.DatastatisticsMapper">
+	
+	<select id="getCloset" resultType="com.hdsm.domain.datastatistics.ClosetDTO">
+		select views1, v1date, views2, v2date, views3, v3date, views4, v4date, views5, v5date, views6, v6date, views7, v7date, views8, v8date
+		from closetcounter
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate-1,'yyyymmdd')
+	</select>
+
+	<select id="getMakeup" resultType="com.hdsm.domain.datastatistics.MakeupDTO">
+		select views1, v1date, views2, v2date, views3, v3date, views4, v4date, views5, v5date, views6, v6date, views7, v7date, views8, v8date
+		from makeupcounter
+		where to_char(viewdate,'yyyymmdd') = to_char(sysdate-1,'yyyymmdd')
+	</select>
+	
+	
+	<select id="getEventCount" resultType="com.hdsm.domain.datastatistics.EventDTO">
+	<![CDATA[
+		select a.eventdate, closet, makeup 
+		from
+		(select to_char(sysdate-level,'yyyymmdd') as eventdate
+		from dual
+		connect by level<6) a join(select * from eventcounter) b
+		on a.eventdate=to_char(b.eventdate,'yyyymmdd')
+		order by b.eventdate asc
+	]]>
+	</select>
+</mapper>

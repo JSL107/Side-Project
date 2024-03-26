@@ -1,0 +1,227 @@
+/*==================List==================*/
+
+/*==================BOARD==================*/
+.board__index {
+    table-layout: fixed;
+    word-break: break-all;
+    display: flex;
+    width: 90vw;
+    position: relative;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.list__board {
+    margin: 1rem 0;
+}
+/*==================READ==================*/
+
+.list__board tbody { 
+    margin: 0;
+}
+
+.board__content {
+    display: flex;
+    table-layout: fixed;
+    word-break: break-all;
+    text-align: center;
+}
+
+.title__span {
+    text-align: left;
+}
+
+.board__title {
+    cursor: pointer;
+    width: 80%;
+    margin-right: 7px;
+}
+
+.info__desc__l {
+    display: flex;
+}
+
+.info__desc__l p {
+    margin: .5rem 1rem 1rem 0;
+}
+
+.info__desc__l strong {
+    font-size: 1.5rem;
+}
+/*==================PAGINATION==================*/
+.paging {
+    display: flex;
+    justify-content: center;
+}
+
+.paging .paging__number {
+    display: flex;
+    justify-content: center;
+}
+
+.write__article {
+    float: right;
+    position: absolute;
+    right: 15%;
+}
+
+/* .paging__number ol {
+    list-style : true;
+    margin: 0;
+    padding: 0;
+} */
+
+.paging__number ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.paging__number li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    float: left;
+    cursor: pointer;
+}
+
+/*==================ARTICLE==================*/
+.article__container {
+    margin: 1.5rem 3rem;
+}
+
+.read__title__container {
+    border-bottom: 1px solid;
+}
+
+.read__title {
+    margin: .5rem 0;
+}
+
+.userinfo__subtitle  {
+    background-color: #fe81b9;
+    color: #f7f6f2;
+    padding: 0 1rem;
+}
+
+.userinfo__subtitle p {
+    margin: auto 0;
+}
+
+
+.area__container {
+    display: flex;
+    justify-content: space-between;
+    margin: .5rem 0;
+}
+
+.profile__thumb {
+    display: flex;
+    justify-content: space-between;
+}
+
+.read__content__text {
+    height: 200px;
+}
+
+.user__content p {
+
+}
+
+.area__l {
+    float: right;
+}
+
+.comment__view ul {
+    padding: 1rem;
+}
+
+.comment__info {
+    justify-content: flex-start;
+}
+
+.comment__user {
+    display: flex;
+}
+
+.comment__reply {
+    display: flex;
+    width: 100%;
+}
+
+.post__box {
+    width: 90%;
+}
+
+.reply__reply {
+    width: 10%;
+}
+
+
+.reply__reply button {
+    border: 1px solid;
+    border-radius: 20px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+}
+
+.box__textarea textarea {
+    resize: none;
+    height: 70px;
+    width: 100%;
+    overflow-y: scroll;
+    resize: none;
+    margin: .5rem 1rem;
+}
+
+.comment__btn {
+    float: right;
+}
+
+.comment__btn button {
+    margin: 0 .5rem;
+}
+
+/*==================WRITE==================*/
+.write__head input {
+    height: 24px;
+    margin-right: 10px;
+    border: none;
+    font-size: 20px;
+    line-height: 24px;
+    vertical-align: middle;
+    border-bottom: 1px solid;
+    width: 90vw;
+}
+
+
+.write__container board__write {
+    border: none;
+    width: 100%;
+    overflow: none;
+    min-height: 300px;
+}
+
+
+
+@media (min-width: 900px) {
+
+    .board__index {
+        width: 55vw;
+    }
+
+    .write__head input {
+        width: 100%;
+    }
+
+    .write__container {
+        padding: 19px 27px 30px;
+        box-sizing: border-box;
+        border-radius: 2px;
+    }
+    .read__content__text {
+        width: 700px;
+    }
+
+}

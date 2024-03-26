@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- parameterType="com.hdsm.domain.MemberVO" -->
+<mapper namespace="com.hdsm.persistence.MemberMapper">
+    <resultMap type="com.hdsm.domain.member.MemberDTO" id="memberMap">
+        <id property="mid" column="mid"/>
+        <result property="mid" column="mid"/>
+        <result property="mpassword" column="mpassword"/>
+        <result property="memail" column="memail"/>
+        <result property="mname" column="mname"/>
+        <result property="mdate" column="mdate"/>
+        <collection property="authList" resultMap="authMap">
+        </collection>
+    </resultMap>
+
+    <resultMap type="com.hdsm.domain.member.MemberAuthVO" id="authMap">
+        <!-- property가 들어온 값 column은 저장할 컬럼 말하는거인듯 -->
+        <result property="username" column="mid"/>
+        <result property="authority" column="authority"/>
+    </resultMap>
+
+    <!-- 권한을 포함한 모든 회원의 정보를 가져오기 -->
+    <select id="read" resultType="string">
+        select mpassword
+        from member
+        where mid = #{mid}
+    </select>
+
+    <select id="adminLogin" resultType="com.hdsm.domain.member.MemberDTO">
+        select *
+        from member mem
+                 LEFT OUTER JOIN MEMBER_AUTHORITIES auth on mem.mid = auth.username
+        where mid = #{mid}
+          and auth.authority = 'ROLE_ADMIN'
+    </select>
+
+    <select id="countTotalUser" resultType="Integer">
+        select count(*)
+        from member mem
+                 LEFT OUTER JOIN MEMBER_AUTHORITIES auth on mem.mid = auth.username
+        where auth.authority = 'ROLE_USER'
+    </select>
+
+    <select id="countMan" resultType="Integer">
+        select count(*)
+        from member mem
+                 LEFT OUTER JOIN MEMBER_AUTHORITIES auth on mem.mid = auth.username
+        where auth.authority = 'ROLE_USER' and mem.gender = 'MALE' or mem.gender='man'
+    </select>
+
+    <select id="countWoman" resultType="Integer">
+        select count(*)
+        from member mem
+                 LEFT OUTER JOIN MEMBER_AUTHORITIES auth on mem.mid = auth.username
+        where auth.authority = 'ROLE_USER' and mem.gender = 'FEMALE' or mem.gender='woman'
+    </select>
+	
+	<select id="ageRange" resultType="map">
+		<![CDATA[
+			select A.age as age, NVL(B.count,0) as count
+			from
+			(select level*10  as age
+			from dual
+			connect by level<9) A
+			left outer join
+			(select age, count(age) as count
+			from
+			(select trunc(age,-1) as age
+			from member)group by age) B on A.age = B.age
+			order by A.age
+		]]>
+	</select>
+	
+	<select id="todayOrderCount" resultType="Integer">
+		select count(oid) as ordercount
+		from orderlist
+		where to_char(odate,'yyymmdd') = to_char(sysdate,'yyymmdd')
+	</select>	
+	
+	<select id="todayOrderSales" resultType="Integer">
+		<![CDATA[
+			select nvl(sum(a.price), 0) from (select o.oid as oid, p.pid, p.pprice as price from orderitem o join product p on o.pid = p.pid) a join 
+			(select oid from orderlist where to_char(current_date,'yymmdd') = to_char(odate,'yymmdd'))
+			b on a.oid = b.oid
+		]]>
+	</select>
+	
+	<select id="monthlyjoin" resultType="map">
+		<![CDATA[
+			select B.month, NVL(A.count,0) as count
+			from
+			(select to_char(mdate,'yyyy-mm') as mdate, count(mdate) as count
+			from member
+			group by to_char(mdate,'yyyy-mm')) A
+			right outer join
+			(
+			select TO_CHAR(ADD_MONTHS(TO_DATE('202301', 'YYYYMM'), LEVEL - 1), 'YYYY-MM') AS month
+			from dual
+			connect by level<13) B on A.mdate=B.month
+			order by B.month
+		]]>
+	</select>
+		
+</mapper>

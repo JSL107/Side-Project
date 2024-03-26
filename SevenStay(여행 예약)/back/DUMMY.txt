@@ -1,0 +1,13 @@
+INSERT INTO Accommodation(accommodation_id,city, accommodation_Name, Accommodation_address, phone_Number)
+VALUES("1","제주시", "효리네민박", "몰라", "000-000-0000");
+
+
+
+@Column(name = "Accommodation_ID")
+    private String id;
+
+    private String city;
+    private String accommodationName;
+    @Column(name = "Accommodation_address")
+    private String address;
+    private String phoneNumber;

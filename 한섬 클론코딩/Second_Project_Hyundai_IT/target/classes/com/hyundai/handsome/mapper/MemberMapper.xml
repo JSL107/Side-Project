@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- /* 작성자 : 이준석 김찬중 * 마이페이지에서 회원 정보 가져오기, 회원 가입, 회원 id 중복 체크, 로그인, 시큐리티 
+	적용 로그인 페이지, 마이페이지 가져오기, 아이디 찾기, 회원 정보 변경, 회원 탈퇴*/ -->
+<mapper namespace="com.hyundai.handsome.mapper.MemberMapper">
+	<!-- 회원 정보 가져오기 -->
+	<select id="selectMember"
+		resultType="com.hyundai.handsome.vo.MemberVO">
+		select mid from member
+	</select>
+	<!-- 회원 가입 -->
+	<insert id="memberJoin">
+		insert into member values(#{mid}, #{mpassword},
+		#{mname}, #{memail}, #{mtel},
+		#{maddress1},#{maddress2},#{maddress3},'Friend',sysdate,5000,1)
+	</insert>
+	<!-- 아이디 중복검사 -->
+	<select id="idCheck" resultType="int">
+		select count(*) from member
+		where mid = #{mid}
+	</select>
+	<!-- 기존 로그인 -->
+	<select id="memberLogin"
+		resultType="com.hyundai.handsome.vo.MemberVO">
+		select * from member where mid=#{mid}
+	</select>
+	<!-- 시큐리티가 적용된 로그인 -->
+	<select id="memberLogin2"
+		resultType="com.hyundai.handsome.vo.MemberVO">
+		select * from member where mid=#{mid}
+	</select>
+
+	<!-- 마이페이지에 필요한 회원 정보 가져오기 -->
+	<select id="myPage"
+		resultType="com.hyundai.handsome.vo.MemberVO">
+		select * from member where mid=#{mid}
+	</select>
+
+	<!-- 아이디 찾기 -->
+	<select id="findID"
+		resultType="com.hyundai.handsome.vo.MemberVO">
+		select * from member where mname=#{mname} and
+		memail=#{memail}
+	</select>
+
+	<!-- 회원 정보 수정 -->
+	<update id="updateMember">
+		update member set
+		mname=#{mname},memail=#{memail},mtel=#{mtel}, mpassword=#{mpassword}
+		where mid = #{mid}
+	</update>
+
+	<!-- 회원 정보 삭제 -->
+	<delete id="deleteMember">
+		delete from member where mid = #{mid}
+	</delete>
+</mapper>

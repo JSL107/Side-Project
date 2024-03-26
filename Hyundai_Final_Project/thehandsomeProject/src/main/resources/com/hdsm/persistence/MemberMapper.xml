@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- parameterType="com.hdsm.domain.MemberVO" -->
+<mapper namespace="com.hdsm.persistence.MemberMapper">
+
+    <!-- List<MemberAuthVO>를 포함한 여러 속성을 가진 MemberVo를 뱉기 위한 result Map -->
+    <resultMap type="com.hdsm.domain.MemberVO" id="memberMap">
+        <id property="mid" column="mid"/>
+        <result property="mid" column="mid"/>
+        <result property="mpassword" column="mpassword"/>
+        <result property="memail" column="memail"/>
+        <result property="mname" column="mname"/>
+        <result property="mdate" column="mdate"/>
+        <result property="gender" column="gender"/>
+        <result property="age" column="age"/>
+        <result property="mstatus" column="mstatus"/>
+        <collection property="authList" resultMap="authMap">
+        </collection>
+    </resultMap>
+
+    <resultMap type="com.hdsm.domain.MemberAuthVO" id="authMap">
+        <!-- property가 들어온 값 column은 저장할 컬럼 말하는거인듯 -->
+        <result property="username" column="mid"/>
+        <result property="authority" column="authority"/>
+    </resultMap>
+
+
+    <!-- 회원가입 -->
+    <insert id="insertMember">
+        INSERT INTO member (mid, mpassword, mname, memail, mtel, mzipcode,
+                            maddress1, maddress2, buysum, mgrade, mdate, mpoint, menabled, gender, age, mstatus)
+        VALUES (#{mid}, #{mpassword}, #{mname}, #{memail}, #{mtel}, #{mzipcode},
+                #{maddress1}, #{maddress2}, 0, 'silver', sysdate, 0, 0, #{gender}, #{age}, #{mstatus})
+    </insert>
+    <!-- 권한 정보도 넣기 -->
+    <insert id="insertMemberAutority">
+        INSERT INTO member_authorities
+            (username, authority)
+        VALUES (#{username}, #{authority})
+    </insert>
+
+    <!-- 권한을 포함한 모든 회원의 정보를 가져오기 -->
+    <select id="read" resultMap="memberMap">
+        SELECT mid, mpassword, mname, mdate, authority
+        FROM member mem
+                 LEFT OUTER JOIN MEMBER_AUTHORITIES auth
+                                 on mem.mid = auth.username
+        WHERE mem.mid = #{userid}
+    </select>
+
+    <!-- 아이디 중복체크 -->
+    <select id="idCheck" resultType="int">
+        SELECT COUNT(mid)
+        FROM member
+        WHERE mid = #{mid}
+    </select>
+
+    <!-- 전화번호 중복체크 -->
+    <select id="telCheck" resultType="int">
+        SELECT COUNT(mtel)
+        FROM member
+        WHERE mtel = #{mtel}
+    </select>
+
+    <!-- 로그인 -->
+    <select id="login" resultType="com.hdsm.domain.MemberVO">
+        select mid, mpassword
+        from member
+        where mid = #{mid}
+          and mpassword = #{mpassword}
+    </select>
+
+    <select id="pwcheck" resultType="com.hdsm.domain.MemberVO">
+        select mid, mpassword
+        from member
+        where mid = #{mid}
+    </select>
+
+    <!-- 유저의 장바구니목록들 가져오기 -->
+    <select id="getMembersShoppingBag"
+            resultType="com.hdsm.domain.MemberSbagDTO">
+        SELECT
+        *
+        FROM mycart
+        <trim prefix="WHERE" prefixOverrides="AND |OR">
+            <if test="mid != null and mid !='' ">
+                mid = #{mid}
+            </if>
+        </trim>
+
+    </select>
+    <!-- 그목록들에 있는 제품의 정보 -->
+    <select id="getShoppingBagsProduct"
+            resultType="com.hdsm.domain.ProductVO">
+        SELECT *
+        FROM product
+        where pid in #{pid}
+
+    </select>
+    <!-- 그제품들의 컬러 정보 -->
+    <select id="getProductsColor"
+            resultType="com.hdsm.domain.ThumbnailColorVO">
+        SELECT product_pid,
+               ccolorcode,
+               cname,
+               ccolorimage,
+               c_thumbnail1,
+               c_thumbnail2
+        FROM color
+        where product_pid = #{pid}
+
+    </select>
+
+    <select id="getMember" resultType="com.hdsm.domain.MemberVO">
+        select *
+        from member
+        where mid = #{memberId}
+    </select>
+
+    <!-- 장바구니 담기 -->
+    <insert id="insertShoppingBags">
+        INSERT INTO mycart (mid, pid, psize, pcolor, pamount)
+        VALUES (#{mid}, #{pid}, #{psize}, #{pcolor}, #{pamount})
+    </insert>
+
+    <!-- 장바구니 몇개있는지 !! -->
+    <select id="getShoppingBagCount" resultType="int">
+        select count(*)
+        from mycart
+        where mid = #{mid}
+    </select>
+
+    <!-- 장바구니 상품 정보 변경 (수량, 사이즈, 컬러 등) -->
+    <update id="updateShoppingBag">
+        UPDATE mycart
+        SET psize   = #{psize},
+            pcolor  = #{pcolor},
+            pamount = #{pamount}
+        WHERE mid = #{mid}
+          and pid = #{pid}
+    </update>
+
+    <!-- 장바구니에 동일 상품이 있는지 조회 -->
+    <select id="selectShoppingBag" resultType="int">
+        SELECT count(mid)
+        FROM mycart
+        WHERE mid = #{mid}
+          and pid = #{pid}
+    </select>
+
+    <!-- 장바구니 상품 정보 삭제 -->
+    <delete id="deleteShoppingBag">
+        DELETE FROM mycart
+        WHERE
+        <foreach collection="msList" item="dto" index="index"
+                 separator="OR">
+            mid = #{dto.mid} and pid = #{dto.pid} and psize =
+            #{dto.psize} and
+            pcolor = #{dto.pcolor}
+        </foreach>
+    </delete>
+
+    <!-- 위시리스트 갯수 가져오기 -->
+    <select id="getWishListCount" resultType="int">
+        SELECT count(*)
+        FROM wishlist
+        WHERE member_mid = #{mid}
+    </select>
+
+    <!-- 위시리스트 넣기 -->
+    <insert id="insertWishList">
+        INSERT INTO wishlist (member_mid, pid, pcolor)
+        VALUES (#{member_mid}, #{pid}, #{pcolor})
+    </insert>
+    <!-- 해당 유저가 이 물건을 위시리스트에 담았는지 확인 -->
+    <select id="isinWishList" resultType="int">
+        SELECT count(*)
+        FROM wishlist
+        WHERE member_mid = #{member_mid}
+          and pid = #{pid}
+    </select>
+
+    <!-- 사용자가 위시리스트에 담은 목록들 가져오기 -->
+    <select id="getUsersWishList"
+            resultType="com.hdsm.domain.MemberWishListDTO">
+        SELECT *
+        FROM wishlist
+        WHERE member_mid = #{member_mid}
+    </select>
+
+    <!-- 그목록들에 있는 제품의 정보 -->
+    <select id="getWishListProduct" resultType="com.hdsm.domain.ProductVO">
+        SELECT *
+        FROM wishlist
+        where pid = #{pid}
+    </select>
+
+    <!-- 위시리스트 아이템 삭제 -->
+    <delete id="deleteWishListItem">
+        DELETE FROM wishlist
+        WHERE
+        <foreach collection="wsList" item="dto" index="index"
+                 separator="OR">
+            member_mid = #{dto.member_mid} and pid = #{dto.pid}
+        </foreach>
+    </delete>
+
+    <!-- 회원 정보 삭제 -->
+    <delete id="deleteuser">
+        delete
+        from member
+        where mid = #{mid}
+    </delete>
+    <!-- 회원 권한 삭제 -->
+    <delete id="deleteuserAuth">
+        delete
+        from member_authorities
+        where username = #{username}
+    </delete>
+    <!-- 회원 권한 조회 -->
+    <select id="getMemberAuth" resultType="String">
+        select username
+        from member_authorities
+        where username = #{username}
+    </select>
+
+    <update id="updateuser">
+        update member
+        set mpassword =#{mpassword},
+            memail=#{memail},
+            mname=#{mname},
+            mtel=#{mtel}
+        where mid = #{mid}
+    </update>
+
+    <!-- 유저의 포인트를 수정-->
+    <update id="updateHSpoint">
+        update member
+        set mpoint=#{mpoint}
+        where mid = #{mid}
+    </update>
+
+    <!-- 쿠폰을 등록해준다. -->
+    <insert id="insertCoupon">
+        insert into coupon
+        values ('FFFF-dd-ee-aa', 1, #{mid}, '[10%할인]', sysdate, sysdate + 7)
+    </insert>
+
+    <select id="checkEmail" resultType="int">
+        select case when count(memail) = 1 then 1 else 0 end
+        from (select memail
+              from member)
+        where memail = #{email}
+    </select>
+
+</mapper> 

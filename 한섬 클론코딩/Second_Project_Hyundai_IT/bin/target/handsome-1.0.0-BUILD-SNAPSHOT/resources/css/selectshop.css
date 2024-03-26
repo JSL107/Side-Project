@@ -1,0 +1,370 @@
+@charset "utf-8";
+
+/*
+ * **************************************************
+ * **************************************************
+ * **************************************************
+ * 편집샵 공통 영역
+ * **************************************************
+ * **************************************************
+ * **************************************************
+ */
+.selectshop-contents-wrap .blind{font-size:1px; color:transparent; overflow:hidden; text-indent:-999999px; position: absolute; top:-999999px; left:-999999px;}
+h4.tit{color:#0b0b0b;font-size:26px;font-family:'Apple SD Gothic Neo',sans-serif;line-height:1.5em;}
+.selectshop-contents-wrap .h3-tt{font-size:26px; font-weight:600; color:#0b0b0b; font-family: 'Apple SD Gothic Neo',sans-serif; line-height:normal;}
+
+
+/*
+ * **************************************************
+ * **************************************************
+ * **************************************************
+ * 편집샵 메인
+ * **************************************************
+ * **************************************************
+ * **************************************************
+ */
+/* 편집샵 메인 header(20201202 예정) */
+#headerWrap.selectshop-header-wrap .gnbwarp .gnb_nav > ul > li > .sub_back{top:120px;}
+#headerWrap.selectshop-header-wrap .gnbwarp .logo{float:left; width:125px;}
+#headerWrap.selectshop-header-wrap .gnbwarp .logo a.selec{color: #363636; font-size: 26px; font-family: 'whitneyLight', 'malgun gothic'; line-height: 38px; letter-spacing: 3px; text-align: left; text-indent: 0; font-weight: normal; background: none; width: 205px; margin: 21px auto 18px; height: 40px; display: block;}
+#headerWrap.selectshop-header-wrap .gnbwarp .gnb_nav > ul > li > a .arr{bottom:1px;}
+#headerWrap .gnbwarp .gnb_nav .sub_menu > ul > li .pb{position:relative; display:inline-block; padding-right:31px;}
+#headerWrap .gnbwarp .gnb_nav .sub_menu > ul > li .pb:after{content:""; display:block; width:27px; height:13px; background:url(http://cdn.thehandsome.com/_ui/desktop/common/images/common/icon_pb_pc.png) 0 0 no-repeat; position:absolute; top:5px; right:0;}
+#headerWrap .gnbwarp .gnb_nav .sub_menu > ul > li > a.pb:after{top:4px;}
+#headerWrap .gnbwarp .gnb_nav > ul > li > a{padding:12px 12px 32px;}
+
+/* 편집샵 메인 big banner */
+.selectshop-contents-wrap .big_banner1903{margin-top:19px;}
+.selectshop-contents-wrap .big_banner1903{position:relative;margin-bottom:53px;overflow:hidden;}
+.selectshop-contents-wrap .big_banner1903 ul li{position:relative;width:100%;height:480px;overflow:hidden;}
+.selectshop-contents-wrap .big_banner1903 ul li > a{display:block;}
+
+
+.selectshop-contents-wrap .big_banner1903 .a_txt_wrap{position:absolute;left:10.2%;top:30%;text-align:center;width:79.6%;}
+.selectshop-contents-wrap .big_banner1903 .a_txt_wrap .title{color:#151515;font-size:52px;font-family:Arial,'AppleSDGothicNeoEB',sans-serif;line-height:1.5em;font-weight:bold;letter-spacing:-1.5px;opacity:0;padding-top:3px;
+-webkit-transition:.5s;-moz-transition:.5s;-o-transition:.5s;-ms-transition:.5s;
+transform: scale(0.7);-webkit-transform: scale(0.7);-moz-transform: scale(0.7);-o-transform: scale(0.7);-ms-transform: scale(0.7);
+transition-delay: .8s;-webkit-transition-delay: .8s;-moz-transition-delay: .8s;-o-transition-delay: .8s;-ms-transition-delay: .8s;}
+.selectshop-contents-wrap .big_banner1903 .a_txt_wrap .s_title{color:#151515;font-size:18px;font-family:'Apple SD Gothic Neo',sans-serif;line-height:26px;padding:0;margin-top:2px;letter-spacing:-1px;opacity:0;-webkit-transition:.3s;-moz-transition:.3s;-o-transition:.3s;-ms-transition:.3s;
+transition-delay: .8s;-webkit-transition-delay: .8s;-moz-transition-delay: .8s;-o-transition-delay: .8s;-ms-transition-delay: .8s;}
+.selectshop-contents-wrap .big_banner1903 .a_txt_wrap .shop_now_btn{color:#151515;margin-top:35px;display:inline-block;font-family:Arial,sans-serif;font-size:14px;border:1px solid #151515;padding:10px 18px;line-height:1em;opacity:0;-webkit-transition:.3s;-moz-transition:.3s;-o-transition:.3s;-ms-transition:.3s;
+transition-delay: .8s;-webkit-transition-delay: .8s;-moz-transition-delay: .8s;-o-transition-delay: .8s;-ms-transition-delay: .8s;}
+.selectshop-contents-wrap .big_banner1903 .a_txt_wrap.left{text-align:left;}
+
+
+.selectshop-contents-wrap .big_banner1903 .bigban-con-text{position:absolute; top:0; left:0; width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; box-sizing:border-box; padding:0 100px;}
+.selectshop-contents-wrap .big_banner1903 .bigban-con-text .logo{opacity:0;padding-top:3px;
+-webkit-transition:.5s;-moz-transition:.5s;-o-transition:.5s;-ms-transition:.5s;
+transform: scale(0.7);-webkit-transform: scale(0.7);-moz-transform: scale(0.7);-o-transform: scale(0.7);-ms-transform: scale(0.7);
+transition-delay: .8s;-webkit-transition-delay: .8s;-moz-transition-delay: .8s;-o-transition-delay: .8s;-ms-transition-delay: .8s;}
+.selectshop-contents-wrap .big_banner1903 .swiper-slide.swiper-slide-active .bigban-con-text .logo{opacity:1;transform: scale(1);}
+.selectshop-contents-wrap .big_banner1903 .bigban-con-text .con-box{margin-top:90px; opacity:0; -webkit-transition:opacity .3s;-moz-transition:opacity .3s;-o-transition:opacity .3s;-ms-transition:opacity .3s; transition:opacity .3s; transition-delay: .8s;-webkit-transition-delay: .8s;-moz-transition-delay: .8s;-o-transition-delay: .8s;-ms-transition-delay: .8s;}
+.selectshop-contents-wrap .big_banner1903 .swiper-slide.swiper-slide-active .bigban-con-text .con-box{opacity:1;}
+.selectshop-contents-wrap .big_banner1903 .bigban-con-text .con-box .tt{font-size:24px; color:#fff; font-weight:500; letter-spacing:-1px;}
+.selectshop-contents-wrap .big_banner1903 .bigban-con-text .con-box .con{font-size:18px; color:#fff; line-height:1.5; margin-top:18px; letter-spacing:-2px;}
+
+
+.selectshop-contents-wrap .big_banner1903 .big_banner_inner {width:1019px;overflow:hidden;}
+.selectshop-contents-wrap .big_banner1903 .swiper-container-horizontal > .swiper-pagination{background:transparent;position:absolute;left:50%;bottom:28px;width:100%;height:4px;margin-left:-509.5px;}
+.selectshop-contents-wrap .big_banner1903 .swiper-pagination .swiper-pagination-progressbar-fill{background:#333;position:absolute;top:0;left:0;width:100%;height:100%;-webkit-transform-origin: left top;-ms-transform-origin: left top;transform-origin: left top;}
+.selectshop-contents-wrap .big_banner1903 .bigb{background:none;width:1019px;height:100%;left:auto;right:50%;top:0;margin-top:0;margin-right:525.5px;}
+.selectshop-contents-wrap .big_banner1903 .bigb:before{content:"";display:block;width:23px;height:56px;background:url('http://cdn.thehandsome.com/pc/products/btn_main_direc1903_w.png') no-repeat;position:absolute;right:48px;top:50%;margin-top:-28px;}
+.selectshop-contents-wrap .big_banner1903 .bigb.swiper-button-next{right:auto;left:50%;margin-left:525.5px;}
+.selectshop-contents-wrap .big_banner1903 .bigb.swiper-button-next:before{background-position:center -116px;right:auto;left:48px;}
+.selectshop-contents-wrap .big_banner1903 ul li:first-child .a_txt_wrap .title{opacity:1;transform: scale(1)}
+.selectshop-contents-wrap .big_banner1903 ul li:first-child .a_txt_wrap .s_title{opacity:1;}
+.selectshop-contents-wrap .big_banner1903 ul li:first-child .a_txt_wrap .shop_now_btn{opacity:1;}
+.selectshop-contents-wrap .big_banner1903 ul li.swiper-slide-active .a_txt_wrap .title{opacity:1;transform: scale(1)}
+.selectshop-contents-wrap .big_banner1903 ul li.swiper-slide-active .a_txt_wrap .s_title{opacity:1;}
+.selectshop-contents-wrap .big_banner1903 ul li.swiper-slide-active .a_txt_wrap .shop_now_btn{opacity:1;}
+.selectshop-contents-wrap .big_banner1903 .big_banner_inner .v_img { width: 100%; visibility: hidden; }
+.selectshop-contents-wrap .big_banner1903 .big_banner_inner .v_img img { display: block; width: 100%; color: #222; vertical-align: top; }
+.selectshop-contents-wrap .big_banner1903 .big_banner_inner .slide-bgimg{   position:absolute;top:0;left:0;width:100%;max-width:1019px;height:100%;background-position:center;background-size:cover;z-index:-2;}
+.selectshop-contents-wrap .big_banner_frame{display:none;}
+.selectshop-contents-wrap .big_banner_frame:before{content:"";display:block;width:16px;height:100%;z-index:11;background:#fff;position:absolute;top:0;left:50%;margin-left:-524.5px;}
+.selectshop-contents-wrap .big_banner_frame:after{content:"";display:block;width:16px;height:100%;z-index:11;background:#fff;position:absolute;top:0;right:50%;margin-right:-524.5px;}
+.selectshop-contents-wrap .big_banner1903 .a_txt_wrap .title{font-size:50px;}
+.selectshop-contents-wrap .big_banner1903 .a_txt_wrap .title .bar-in{display:inline-block; position:relative; line-height:1.5em;}
+.selectshop-contents-wrap .big_banner1903 .a_txt_wrap .title .bar-in .ab-bar{display: inline-block; position:absolute; top:50%; transform:translate(0, -50%); width:7px; height:72px;}
+.selectshop-contents-wrap .big_banner1903 .a_txt_wrap .title .bar-in .ab-bar.left{left:-40px;}
+.selectshop-contents-wrap .big_banner1903 .a_txt_wrap .title .bar-in .ab-bar.right{right:-40px;}
+.selectshop-contents-wrap .big_banner1903 .swiper-pagination{}
+.selectshop-contents-wrap .big_banner1903 .swiper-pagination .swiper-pagination-bullet{width:2px; height:14px; background-color:rgba(255, 255, 255, 0.6); transition:.2s; border-radius:0; opacity: 1; margin:0 2.5px;}
+.selectshop-contents-wrap .big_banner1903 .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{width:6px; background-color:rgba(255, 255, 255, 1);}
+
+/* 편집샵 메인 contents */
+.selectshop-contents-wrap .selec-brand-list-box{}
+.selectshop-contents-wrap .selec-brand-list-box .logo-list{overflow:hidden; height:45px; transition:.4s;}
+.selectshop-contents-wrap .selec-brand-list-box .logo-list > ul{text-align:center;}
+.selectshop-contents-wrap .selec-brand-list-box .logo-list > ul > li{}
+.selectshop-contents-wrap .selec-brand-list-box .logo-list > ul > li > ul{}
+.selectshop-contents-wrap .selec-brand-list-box .logo-list > ul > li > ul > li{display: inline-block; min-height: 20px; margin: 10px 20px;}
+.selectshop-contents-wrap .selec-brand-list-box ul li a{display:block;}
+
+.selectshop-contents-wrap .selec-brand-list-box .brand{display: block; background: url(/_ui/desktop/common/images/common/ou_logo.png) no-repeat; text-indent: -999em;}
+
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR01,
+.ou_mdp_list .item_info2 .brand.BR01{width:68px;background-position: 0 -45px}/* TIME */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR02,
+.ou_mdp_list .item_info2 .brand.BR02{width:86px;background-position: 0 -86px}/* MINE */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR03,
+.ou_mdp_list .item_info2 .brand.BR03{width:53px;height:25px;background-position: 0 -126px}/* SYSTEM */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR04,
+.ou_mdp_list .item_info2 .brand.BR04{width:54px;height:25px;background-position: 0 -167px}/* SJSJ */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR05,
+.ou_mdp_list .item_info2 .brand.BR05{width:70px;height:25px;margin-top:-4px;background-position: 0 -205px}/* DECKE */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR06,
+.ou_mdp_list .item_info2 .brand.BR06{width:70px;height:25px;background-position: 0 -249px}/* TIME HOMME */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR07,
+.ou_mdp_list .item_info2 .brand.BR07{width:50px;height:25px;background-position: 0 -289px}/* SYSTEM HOMME */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR08,
+.ou_mdp_list .item_info2 .brand.BR08{width:130px;background-position: 0 -332px}/* CASHMERE */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR09,
+.ou_mdp_list .item_info2 .brand.BR09{width:50px;background-position: 0 -371px}/* CHLOE */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR10,
+.ou_mdp_list .item_info2 .brand.BR10{width:98px;background-position: 0 -413px}/* SEE BY CHLOE */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR11,
+.ou_mdp_list .item_info2 .brand.BR11{width:46px;background-position: 0 -453px}/* MM6 */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR12,
+.ou_mdp_list .item_info2 .brand.BR12{width:134px;background-position: 0 -495px}/* EACHxOTHER */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR13,
+.ou_mdp_list .item_info2 .brand.BR13{width:38px;height:40px;margin-top:-6px;background-position: 0 -534px}/* ELEVENTY */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR14,
+.ou_mdp_list .item_info2 .brand.BR14{width:51px;background-position: 0 -589px}/* BIRD by JUICYCOUTURE */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR15,
+.ou_mdp_list .item_info2 .brand.BR15{width:140px;background-position: 0 -631px}/* Tom GreyHound Downstairs */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR16,
+.ou_mdp_list .item_info2 .brand.BR16{width:54px;background-position: 0 -672px}/* MUE */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR17,
+.ou_mdp_list .item_info2 .brand.BR17{width:75px;height:28px;background-position: 0 -757px}/* JUICY COUTURE */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR18,
+.ou_mdp_list .item_info2 .brand.BR18{width:48px;height:32px;margin-top:-4px;background-position: 0 -793px}/* LANVIN SPORT */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR19,
+.ou_mdp_list .item_info2 .brand.BR19{width:48px;height:32px;margin-top:-6px;background-position: 0 -831px}/* LANVIN COLLECTION */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR20,
+.ou_mdp_list .item_info2 .brand.BR20{width:48px;height:32px;margin-top:-3px;background-position: 0 -876px}/* LANVIN */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR21,
+.ou_mdp_list .item_info2 .brand.BR21{width:82px;background-position: 0 -923px}/* BALLY */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR22,
+.ou_mdp_list .item_info2 .brand.BR22{width:110px;background-position: 0 -964px}/* JIMMY CHOO */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR23,
+.ou_mdp_list .item_info2 .brand.BR23{width:97px;background-position: 0 -1007px}/* BELSTAFF */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR24,
+.ou_mdp_list .item_info2 .brand.BR24{width:68px;background-position: 0 -1046px}/* IRO */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR25,
+.ou_mdp_list .item_info2 .brand.BR25{width:114px;background-position: 0 -1088px}/* THE KOOPLES */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR26,
+.ou_mdp_list .item_info2 .brand.BR26{background-position: 0 -1122px}/* LANVIN COLLECTION ACC _이미지 없음 */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR27,
+.ou_mdp_list .item_info2 .brand.BR27{background-position: 0 -1122px}/* MUE HOMME _이미지 없음 */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR28,
+.ou_mdp_list .item_info2 .brand.BR28{width:126px;background-position: 0 -1172px}/* MOTHAN */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR30,
+.ou_mdp_list .item_info2 .brand.BR30{width:140px;background-position: 0 -1212px}/* FOURM STUDIO */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR31,
+.ou_mdp_list .item_info2 .brand.BR31{width:103px;height:25px;background-position: 0 -1262px}/* LATT BY T */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR32,
+.ou_mdp_list .item_info2 .brand.BR32{width:147px;background-position: 0 -1312px}/* FOURM 1/4 MEN'S LOUNGE_20161207 */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR34,
+.ou_mdp_list .item_info2 .brand.BR34{width:147px;background-position: 0 -1362px}/* FOURM ATELIER_20161207 */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR35,
+.ou_mdp_list .item_info2 .brand.BR35{width:130px;background-position: 0 -1510px;}/* FOURM THE STORE _20170108 */
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_FOURM,
+.ou_mdp_list .item_info2 .brand.FOURM{margin-top:-12px;width:70px;height:30px;background-position: 0 -1460px;}/* 1/4 FOURM _20170108 */
+/* .selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR35, */
+/* .ou_mdp_list .item_info2 .brand.BR35{width:147px;background-position: 0 -1412px}FOURM LIFESTYLE _20161207 */
+.selectshop-contents-wrap .selec-brand-list-box .brand.BR44,
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR44,
+.ou_mdp_list .item_info2 .brand.BR44{width:136px;background-position: 0 -1547px;}/* CLUB MONACO 20190109*/
+.selectshop-contents-wrap .selec-brand-list-box .brand.BR43,
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR43,
+.ou_mdp_list .item_info2 .brand.BR43{width:68px;background-position: 0 -1585px;margin-top:-3px;}/* OBZEE 20190109*/
+.selectshop-contents-wrap .selec-brand-list-box .brand.BR45,
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR45,
+.ou_mdp_list .item_info2 .brand.BR45{width:59px;background-position: 0 -1670px;}/* O'2nd 20191223 */
+.selectshop-contents-wrap .selec-brand-list-box .brand.BR47,
+.selectshop-contents-wrap .selec-brand-list-box .brand.OU_BR47,
+.ou_mdp_list .item_info2 .brand.BR47{width:86px;background-position: 0 -1632px;}/* h:scene 20190626*/
+
+/* 20200721 LATT BY T >>>> LATT로 변경으로 인한 사이즈 조정 */
+.selectshop-contents-wrap .selec-brand-list-box .brand.BR31, .selec-brand-list-box .brand.OU_BR31, .ou_mdp_list .item_info2 .brand.BR31{width:76px;height:25px;background-position: 0 -1262px}/* LATT BY T */
+
+.selectshop-contents-wrap .selec-brand-list-box .list-control-btn{text-align:center; margin-top:20px;}
+.selectshop-contents-wrap .selec-brand-list-box .list-control-btn a{font-size:16px; font-weight:500; letter-spacing:-1px; color:#646464; font-family: 'Apple SD Gothic Neo',sans-serif; display:inline-block; position:relative; padding-right:13px;}
+.selectshop-contents-wrap .selec-brand-list-box .list-control-btn a:before{content:""; display:block;  width:100%; height:1px; background-color:#646464; position:absolute; bottom:0; left:0;}
+.selectshop-contents-wrap .selec-brand-list-box .list-control-btn a:after{content:""; display:block; border-color:transparent; border-width:4px; border-style:solid; border-top:5px solid #646464; position:absolute; top:50%; right:0; width:0px; height:0px; transform:translate(0, -50%); transition:.4s;}
+.selectshop-contents-wrap .selec-brand-list-box .list-control-btn a.on:after{transform:translate(0, -50%) rotate(-180deg); top:30%;}
+
+/* 편집샵 메인 인기브랜드 */
+.selectshop-contents-wrap .selectshop-hot-brand-box{margin-top:95px;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .h3-tt{margin-bottom:34px;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area{}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-name-list{margin-bottom:22px;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-wrap{position:relative; padding-right:45px;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-container {width: 100%; height: 100%; box-sizing:border-box;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-slide {width:auto; display:inline-block; font-size:16px; color:#a7a7a7;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-container-horizontal>.swiper-pagination-progressbar, .swiper-container-vertical>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite{top:auto; bottom:0;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-wrapper{padding-bottom:2px;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-slide{}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-slide.on{}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-slide.on a{ color:#000;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-slide.on a:after{content:""; display:block; position:absolute; bottom:-2px; left:0; width:100%; height:2px; background-color:#000;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-slide a{font-size:16px; color:#aaa; display:inline-block; position:relative;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-button-prev, .selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-button-next{background:none; padding:10px; background-color:#fff;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-button-prev.swiper-button-disabled, .selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-button-next.swiper-button-disabled{display:none; background:none;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-button-prev{width:auto; height:auto; left:0;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-button-prev:before{content:""; display:block; background:url(http://cdn.thehandsome.com/_ui/desktop/common/images/products/hot-brand-name-arrow-right.png) 0 0 no-repeat; width:11px; height:21px; transform:rotate(180deg);}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-button-next{width:auto; height:auto; padding-right:20px; right:0;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .brand-name-list .swiper-button-next:before{content:""; display:block; background:url(http://cdn.thehandsome.com/_ui/desktop/common/images/products/hot-brand-name-arrow-right.png) 0 0 no-repeat; width:11px; height:21px;}
+
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list{}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box{display:none;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .bd-content-in{position:relative; height:435px; background-color:#afa9a3;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .hot-info-text{position:absolute; top:275px; left:0; width:353px; text-align:center;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .hot-info-text .tt{display:inline-block; background-position:0 0; background-repeat:no-repeat;  width:225px; height:14px;}
+/* .selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .hot-info-text .tt.fourmthestore{background-image:url(/_ui/select_temp_img/brand-detail-fourmthestore.png);} */
+/* .selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .hot-info-text .con{font-size:14px; color:#fff; font-family: 'Apple SD Gothic Neo',sans-serif; padding-top:18px; padding-bottom:20px;} */
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .hot-info-text .quick-link{display:inline-block; text-align:center; font-size:16px; font-family: 'Apple SD Gothic Neo',sans-serif; color:#fff; border:1px solid #fff; height:37px; line-height:35px; box-sizing:border-box; transition:.4s; padding:0 8px;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .hot-info-text .quick-link:hover{color:#000; background-color:#fff;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .brand-product-list{position:absolute; top:69px; left:352px;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .brand-product-list .swiper-wrap{position: relative; padding:0 40px; width:833px; box-sizing:border-box;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .brand-product-list .swiper-button-prev{left:0; background:url(http://cdn.thehandsome.com/pc/products/brand-product-list-arrow-right-icon.png) 0 0 no-repeat; width:20px; height:39px; transform:rotate(180deg);}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .brand-product-list .swiper-button-next{right:0; background:url(http://cdn.thehandsome.com/pc/products/brand-product-list-arrow-right-icon.png) 0 0 no-repeat; width:20px; height:39px;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .hot-brand-link-box{display:block;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .hot-brand-link-box:hover .tt{text-decoration:underline;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .hot-brand-link-box:hover .price{text-decoration:underline;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .swiper-slide .img{}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .swiper-slide .img img{vertical-align:middle;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .swiper-slide .intro{line-height:1.4; margin-top:12px; text-align:center;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .swiper-slide .intro .tt{display:block; color:#444; font-size:11px; font-weight:normal; margin-bottom:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.selectshop-contents-wrap .selectshop-hot-brand-box .hot-brand-area .brand-detail-list .bd-content-box .swiper-slide .intro .price{display:block; color:#0d0d0d; font-size:11px; font-weight:600;}
+
+/* 베스트 && 신상품 */
+.product_list1903{margin-top:95px;}
+.product_list1903 .nbe_cnt{overflow:hidden;padding-bottom:56px;height:407.94px;position:relative;}
+.product_list1903 .product_left_menu{float:left;width:11.61%;}
+.product_list1903 .product_left_menu .tit{height:39px;line-height:30px;border-bottom:2px solid #0b0b0b;}
+.product_list1903 .product_left_menu ul{margin-top:12px;}
+.product_list1903 .product_left_menu ul li a{font-size:19px;color:#8f8f8f;font-family:'Apple SD Gothic Neo',sans-serif;padding:12px 0; display: block;}
+.product_list1903 .product_left_menu ul li.on a{color:#0b0b0b;}
+.product_list1903 .nbe_cnt_inner_wrap{float:right;width:85.31%;position:absolute;top:0;right:0;}
+.product_list1903 .nbe_cnt_inner_wrap:nth-child(2){z-index:3;}
+.product_list1903 .nbe_cnt_inner{background:#fff;}
+.product_list1903 .nbe_cnt_inner .items_list li.swiper-slide{width:234px;margin-right:7px;}
+.product_list1903 .nbe_cnt_inner .items_list li.swiper-slide:last-child{margin-right:0;}
+.product_list1903 .nbe_cnt_inner_wrap .swiper-button-next{background:none;height:100%;left:auto;right:0;width:6%;top:0;margin-top:0;}
+.product_list1903 .nbe_cnt_inner_wrap .swiper-button-prev{background:none;height:100%;left:0;right:auto;width:6%;top:0;margin-top:0;}
+.product_list1903 .nbe_cnt_inner_wrap .swiper-button-prev:before{content:"";display:block;width:27px;height:44px;background:url('http://cdn.thehandsome.com/pc/products/btn_main_direc1903_.png') no-repeat;background-position:0 0;left:0;margin-top:248%;margin-left:13px;opacity:.3;}
+.product_list1903 .nbe_cnt_inner_wrap .swiper-button-next:before{content:"";display:block;width:27px;height:44px;background:url('http://cdn.thehandsome.com/pc/products/btn_main_direc1903_.png') no-repeat;background-position:10px -46px;right:0;margin-top:248%;opacity:.3;}
+.product_list1903 .nbe_cnt_inner_wrap .swiper-button-prev.swiper-button-disabled:before, .product_list1903 .nbe_cnt_inner_wrap .swiper-button-next.swiper-button-disabled:before{display:none;opacity:0;}
+.product_list1903 .items_list li .item_box .item_info2 .brand{font-family:'Apple SD Gothic Neo',"Malgun Gothic","맑은 고딕",sans-serif;font-size: 16px;color:#3a3a3a;margin-top:15px;font-weight:bold;}
+.product_list1903 .items_list li .item_box .item_info2 .title{color:#646464;font-family:Arial,'Apple SD Gothic Neo',sans-serif;padding:0 0;overflow:hidden;font-size:14px;letter-spacing:-.5px;max-height:40px;}
+.product_list1903 .items_list li .item_box .item_info2 .price{color:#646464;font-size:13px;font-family:Arial,'Apple SD Gothic Neo',sans-serif;padding:0;}
+.item_box > a{overflow:hidden;}
+.product_list1903 .nbe_cnt_inner .items_list .item_box .item_info1{display:block;}
+.product_list1903 .nbe_cnt_inner .items_list .item_box .item_info1 .item_img{display:block;}
+.product_list1903 .nbe_cnt_inner .items_list .item_box .item_info1 .item_img img{display: inline-block; vertical-align: middle; -webkit-transition:.7s;-moz-transition:.7s;-o-transition:.7s;-ms-transition:.7s;}
+.product_list1903 .nbe_cnt_inner .items_list .item_box .item_info1:hover .item_img img{transform: scale(1.05);-webkit-transform: scale(1.05);-moz-transform: scale(1.05);-o-transform: scale(1.05);-ms-transform: scale(1.05);}
+.product_list1903 .nbe_cnt_inner .items_list .item_box .item_info2{display:block; text-align:center;}
+.product_list1903 .nbe_cnt_inner .items_list .item_box .item_info2 span{display:block;}
+
+
+/*
+ * **************************************************
+ * **************************************************
+ * **************************************************
+ * 브랜드 메인
+ * **************************************************
+ * **************************************************
+ * **************************************************
+ */
+@media all and (min-width: 1025px){
+    .brdm_cnts{width:auto;max-width:1205px;}
+}
+.brandmain-brand-slide-box{margin-bottom:130px;}
+.brandmain-brand-slide-box .h3-tt{margin-bottom:34px; text-align:center;}
+.brandmain-brand-slide-box .swiper-wrap{width:1205px; margin:0 auto;}
+.brandmain-brand-slide-box .swiper-container {width: 100%; height: 100%; padding-bottom:42px;}
+.brandmain-brand-slide-box .swiper-slide {width: 338px;}
+
+.brandmain-brand-slide-box .swiper-container .swiper-slide img{vertical-align:middle;}
+
+.brandmain-brand-slide-box .swiper-container-horizontal>.swiper-pagination-progressbar, .brandmain-brand-slide-box .swiper-container-vertical>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite{top:auto; bottom:0;}
+.brandmain-brand-slide-box .swiper-pagination-progressbar{width:100%; height:2px; left:0; top:auto; bottom:0; position:absolute; background:#ccc;}
+.brandmain-brand-slide-box .swiper-pagination-progressbar .swiper-pagination-progressbar-fill{position:absolute; left:0; top:0; width:100%; height:100%; transform: scale(0); transform-origin: left top; background-color:#000;}
+
+.brandmain-brand-slide-box .brand-link-box{position: relative; display:block;}
+.brandmain-brand-slide-box .brand-link-box .pic{}
+.brandmain-brand-slide-box .brand-link-box .ab-con-text{position:absolute; bottom:0; left:0; width:100%; color:#fff; line-height:1.4; padding:25px; box-sizing:border-box;}
+.brandmain-brand-slide-box .brand-link-box .ab-con-text .tt{font-size:21px; font-weight:bold;}
+.brandmain-brand-slide-box .brand-link-box .ab-con-text .con{font-size:14px; margin-top:5px;}
+
+.brandmain-brand-slide-box .swiper-button-prev, .brandmain-brand-slide-box .swiper-button-next{width:20px; height:39px; background:url(http://cdn.thehandsome.com/_ui/desktop/common/images/products/brandmain-brand-slide-arrow-right-icon.png) 0 0 no-repeat; margin-top:-61.5px;}
+.brandmain-brand-slide-box .swiper-button-prev{transform:rotate(180deg); left:0; padding-left:14px;}
+.brandmain-brand-slide-box .swiper-button-next{right:0; padding-right:14px;}
+
+.product_list.list2{min-height:auto;}
+
+.product_list.list2 .slides li{height:auto; margin-top:45px; margin-bottom:45px;}
+.product_list.list2 .slides li + li + li ~ li{margin-bottom:0;}
+.brdm_cnts .product_list{margin-bottom:120px;}
+.brdm_cnts .product_list .slides .slide_inner .item_info2{display:block; margin-top:14px;}
+.brdm_cnts .product_list .slides .slide_inner .item_info2 span{display:block;}
+.brdm_cnts .product_list .slides .slide_inner .item_info2 .brand{letter-spacing: 1px; font-family: "whitneyBold","Malgun Gothic","맑은 고딕"; font-size: 11px; color: #363636;}
+.brdm_cnts .product_list .slides .slide_inner .item_info2 .title{padding: 0 10px; height: 20px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
+.brdm_cnts .product_list .slides .slide_inner .item_info2 .price{padding: 5px 0; color: #0d0d0d;}
+.brdm_cnts .product_list .slides .slide_inner .item_info2 .flag{width: 90%; margin: 0 auto;}
+.brdm_cnts .product_list .slides .slide_inner .item_info2 .flag span{display:inline-block;}
+.brdm_cnts .product_list .slides .slide_inner .item_info2 .product{    line-height: 24px; display: inline-block; padding: 0 5px; font-size: 11px;}
+.brdm_cnts .product_list .slides .slide_inner .item_info2 .hsDelivery1902{background: none; padding: 0 5px; letter-spacing: -1px; color: #222; line-height:24px;}
+.brdm_cnts .product_list .slides .slide_inner .item_info2 .hsDelivery1902:before{content: ""; display: inline-block; width: 21px; height: 13px; position: relative; top: 3px; margin-right: 3px; background: url(http://cdn.thehandsome.com/_ui/desktop/common/images/products/ico_hsDelivery1904.png) 0 0 no-repeat;}
+.brdm_cnts .product_list .slides .slide_inner .color_more_wrap{margin-top: 10px; position: relative; text-align: center;}
+.brdm_cnts .product_list .slides .slide_inner .color_more_wrap .wt{position:relative; display:inline-block; border: 1px solid #dcdcdc; width: 13px; height: 14px;}
+.brdm_cnts .product_list .slides .slide_inner .color_more_wrap .wt:hover{border: 1px solid #dcdcdc; width: 13px; height: 14px;}
+.brdm_cnts .product_list .slides .slide_inner .color_more_wrap .wt:hover:after{    content: ""; display: block; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background-color: #000;}
+
+.selectshop-contents-wrap .br_lookbook .e_txt_wrap{text-align:left;left:14.6%;top:30%;margin-top:0;width:auto;}
+.selectshop-contents-wrap .br_lookbook img{width:100%; vertical-align:middle;}
+.selectshop-contents-wrap .br_lookbook{position:relative;overflow:hidden;width:1100px;margin:0 auto;}
+.selectshop-contents-wrap .br_lookbook .e_txt_wrap .title{font-size:43px;font-family:'Montserrat',"malgun gothic",sans-serif;line-height:48px;color:#fff;letter-spacing:1px;}
+.selectshop-contents-wrap .br_lookbook .e_txt_wrap .s_title{font-size:18px;font-family:'Noto Sans KR',"Malgun Gothic","맑은 고딕",sans-serif;font-weight:300;letter-spacing:0;color:#fff;}
+
+.selectshop-contents-wrap .br_instagram_wrap{padding-top:90px;text-align:center;overflow:hidden;}
+.selectshop-contents-wrap .br_instagram_wrap .txt_wrap{text-align:center;margin-bottom:30px;}
+.selectshop-contents-wrap .br_instagram_wrap .txt_wrap .title{color:#000;display:block;font-size:28px;font-family:"Unna",serif,'Nanum Myeongjo';letter-spacing:1px;margin-bottom:10px;font-weight:400;}
+.selectshop-contents-wrap .br_instagram_wrap .txt_wrap .s_title,
+.selectshop-contents-wrap .br_instagram_wrap .txt_wrap .s_title a{display:block;color:#363636;font-size:12px;}
+.selectshop-contents-wrap .br_instagram_wrap .txt_wrap .s_title a{text-decoration:underline;font-weight:bold;margin-left:3px;}
+.selectshop-contents-wrap .br_instagram_wrap .txt_wrap .insta_title{padding-top:25px;}
+.selectshop-contents-wrap .br_instagram_wrap .txt_wrap .insta_title li a{display:inline-block;font-size:14px;font-family:"whitneyLight";letter-spacing:2px;text-decoration:underline;}
+.selectshop-contents-wrap .br_instagram_wrap .insta_view_more{display:inline-block;padding-top:30px;border-bottom:1px solid #e3e3e3;}
+.selectshop-contents-wrap #instaContents{position:relative;margin-left:-134px;overflow:hidden;}
+#instaControls a {position:absolute; text-indent:-999em;display: block;width:125px;height:250px;background:#ccc;z-index:2;opacity:0;}
+#instaControls .prev {top:0;left:0;width:268px;}
+#instaControls .next {top:0;right:0;width:200px;}
+.selectshop-contents-wrap .instagram{background: #363636;}
+.selectshop-contents-wrap .instagram .insta_info{width:33%;min-height:444px;text-align: center;}
+.selectshop-contents-wrap .instagram .insta_info .title{color:#fff;font-size:24px;letter-spacing:2px;font-family:"whitneyLight";background:url("/_ui/desktop/common/images/main/btn_insta.png") center 0 no-repeat;padding-top:70px;margin-top:32%;}
+.selectshop-contents-wrap .instagram .insta_info .title > span{display:block;letter-spacing:7px;margin-top:15px;}
+.selectshop-contents-wrap .instagram .insta_info .title2{margin-top: 30px;color:#fff;font-size: 24px;letter-spacing: 1px;font-family:"whitneyLight"}
+.selectshop-contents-wrap .instagram .insta_info .title_s{margin-top:10px;color:#fff;font-size: 16px;}
+.selectshop-contents-wrap #instaContents .slides{position:relative;}
+.selectshop-contents-wrap #instaContents li{float:left;position:relative;max-width:250px;margin:0 9px;overflow:hidden;}
+.selectshop-contents-wrap #instaContents li div{display:none}
+.selectshop-contents-wrap #instaContents li:first-child div{display: block;}
+.selectshop-contents-wrap #instaContents li a{display: block}
+.selectshop-contents-wrap #instaContents li a .insta_pic_info{display:none}
+.selectshop-contents-wrap #instaContents li a > div {position:absolute;top:0;left:0;width:100%; height:100% !important; z-index: 1}
+.selectshop-contents-wrap #instaContents li .insta_pic_info{background-color:#000; opacity:0.6;}
+.selectshop-contents-wrap #instaContents li .insta_pic_info_txt p{padding:30px;color:#fff;font-family:"whitneyLight", "malgun gothic";letter-spacing: 1px; text-align:center; color:#fff; font-size:13px;}
+.selectshop-contents-wrap #instaContents li .insta_pic_info_txt .tag{margin-top:15px;padding-top:15px;line-height: 20px;font-size: 12px;background:url("/_ui/desktop/common/images/main/ico_insta_bul.gif") center 0 no-repeat;}
+.selectshop-contents-wrap #instaContents li img{vertical-align:middle; -webkit-transform:scale(1.0); -ms-transform:scale(1.0); -moz-transform:scale(1.0); -o-transform:scale(1.0); transform:scale(1.0); -webkit-transition:.3s; -moz-transition:.3s; -o-transition:.3s; -ms-transition:.3s;}
+.selectshop-contents-wrap #instaContents li img.active{-webkit-transform:scale(1.1); -ms-transform:scale(1.1); -moz-transform:scale(1.1); -o-transform:scale(1.1); transform:scale(1.1); -webkit-transition:.5s ease-out; -moz-transition:.5s ease-out; -o-transition:.5s ease-out; -ms-transition:.5s ease-out;}
+
+/* 브랜드메뉴추가 210825 */
+.gnb_nav .gnb_brand + .sub_back .sub_menu .sm_dep1 {margin:0 !important;}
+
+/* 220407 브랜드 4개이하 일때 추가 */
+.brandmain-brand-slide-box .brand-list {display:flex;padding-bottom:42px;justify-content:center;}
+.brandmain-brand-slide-box .brand-list .brand-wrap {width:338px;margin-right:12px;}
+.brandmain-brand-slide-box .brand-list:last-child {margin:0;}

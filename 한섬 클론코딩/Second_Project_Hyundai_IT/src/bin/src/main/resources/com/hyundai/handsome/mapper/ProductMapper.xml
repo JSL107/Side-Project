@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   <!-- 
+ /* 
+ * 작성자 : 김가희, 김나형
+ * 
+ * [상품 상세 조회, 상품 컬러 리스트 조회, 상품정보 조회, 카테고리별 상품 조회, 상품 총 개수 조회] 쿼리
+ */
+  -->
+<mapper namespace="com.hyundai.handsome.mapper.ProductMapper">
+
+	<select id="productGetDetail"
+		resultType="com.hyundai.handsome.vo.ProductVO">
+		select p.pid, p.bno, b.bname, p.clarge, p.cmedium, p.csmall, p.pname,
+		p.pprice, p.pdetail, c.ccolorcode, c.cimage1, c.cimage2, c.cimage3
+		from product p 
+		join brand b on p.bno = b.bno
+		join color c on p.pid = c.pid
+		where p.pid=#{pid} AND c.ccolorcode=#{ccolorcode}
+	</select>
+
+	<select id="productGetColor"
+		resultType="com.hyundai.handsome.vo.ProductColorVO">
+		select pid, ccolorcode,ccolorname, ccolorimage, cimage1, cimage2, cimage3 from color where pid=#{pid}
+	</select>
+	
+	<select id="productGetStock" parameterType="map" resultType="com.hyundai.handsome.vo.ProductStockVO">
+		select distinct(s.ssize), c.pid, c.ccolorcode, c.ccolorname, s.samount
+		from color c
+		join stock s on c.pid = s.pid AND c.ccolorcode=#{ccolorcode}
+		where c.pid=#{pid}
+	</select>
+
+	<!--
+	<select id="getList" resultType="com.jmh.domain.ProductVO">
+		select pid, pname, pprice, (select bname from brand b where b.bno=p.bno) as
+		bname, t01_imageurl, t02_imageurl
+		from product p
+	</select>
+
+	<select id="read" resultType="com.jmh.domain.ProductVO">
+		select
+		pid, bno, clarge, cmedium, csmall, pname, pprice, pdetail, t01_imageurl,
+		t02_imageurl
+		from product
+		where bno = #{bno}
+	</select>
+
+	<select id="getListWithPaging"
+		resultType="com.jmh.domain.ProductVO">
+ 		<![CDATA[
+			SELECT p.*, (select bname from brand b where p.bno=b.bno) bname
+			FROM (select rownum rn, pid, pname, pprice, t01_imageurl, t02_imageurl, bno from 
+				(select * from product where clarge = #{param2} and cmedium = #{param3} and csmall = #{param4})) p
+			WHERE p.rn > (#{param1.pageNum} -1) * #{param1.amount} and p.rn <= #{param1.pageNum} * #{param1.amount}
+    	]]>
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) from product 
+			where clarge = #{param1} and cmedium = #{param2} and csmall = #{param3}
+	</select> -->
+</mapper>
