@@ -7,6 +7,8 @@ import { TypeOrmConfigService } from './config/typeorm-config-service';
 import { UserModule } from './user/user.module';
 import { SkillIconModule } from './skill-icon/skill-icon.module';
 import { SkillExperienceModule } from './skill-experience/skill-experience.module';
+import { AuthModule } from './auth/auth.module';
+import { CommonModule } from './common/common.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -18,6 +20,8 @@ import { SkillExperienceModule } from './skill-experience/skill-experience.modul
     UserModule,
     SkillIconModule,
     SkillExperienceModule,
+    AuthModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService, TypeOrmConfigService],
